@@ -6,7 +6,7 @@ $sql = "SELECT rolID, rolNom, tipoRolNom FROM rol INNER JOIN tipo_rol on rol.tip
 $td = "";
 
 $resultado = mysqli_query($con,$sql) or
-die('Error seleccionar roles : '. mysqli_error($con));
+die('Error consulta de roles : '. mysqli_error($con));
 
 echo "<h3>Roles</h3>
 <a href='nuevo.php'>Nuevo</a>
