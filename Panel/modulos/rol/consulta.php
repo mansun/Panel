@@ -1,7 +1,15 @@
 <?php
-?>
-<h3>Roles</h3>
-<a href="">Nuevo</a>
+
+include '../../lib/conexion.php';
+
+$sql = "SELECT rolID, rolNom, tipoRolNom FROM rol INNER JOIN tipo_rol on rol.tipoRolID = tipo_rol.tipoRolID";
+$td = "";
+
+$resultado = mysqli_query($con,$sql) or
+die('Error seleccionar roles : '. mysqli_error($con));
+
+echo "<h3>Roles</h3>
+<a href='nuevo.php'>Nuevo</a>
 <table>
 	<thead>
 		<tr>
@@ -11,12 +19,23 @@
 			<th>Botones</th>
 		</tr>
 	</thead>
-	<tbody>
-		<tr>
-			<td>1</td>
-			<td>admin</td>
-			<td>1</td>
-			<td><a href="">Editar</a><a href="">Borrar</a></td>
-		</tr>
-	</tbody>
-</table>
+					<tbody>";
+while($fila = mysqli_fetch_array($resultado)){
+	$rolID = $fila['rolID'];
+	$rolNom = $fila['rolNom'];
+	$tipoRolNom = $fila['tipoRolNom'];
+	echo "<tr>
+			<td>$rolID</td>
+			<td>$rolNom</td>
+			<td>$tipoRolNom</td>
+			<td><a href='edicion.php?id=$rolID'>Editar</a><a href=''>Borrar</a></td>
+		</tr>";
+}
+echo "			</tbody>";
+echo "</table>";
+
+mysqli_close($con);
+
+
+?>
+
