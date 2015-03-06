@@ -6,7 +6,7 @@ $sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas FROM
 $td = "";
 
 $resultado = mysqli_query($con,$sql) or
-die('Error seleccionar roles : '. mysqli_error($con));
+die('Error consulta de artículos: '. mysqli_error($con));
 
 echo "<h3>Artículos</h3>
 <a href='nuevo.php'>Nuevo</a>

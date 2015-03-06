@@ -6,10 +6,9 @@ $sql = "SELECT logID, logDatEve, UsuID, logAction, logObserv FROM log";
 $td = "";
 
 $resultado = mysqli_query($con,$sql) or
-die('Error seleccionar roles : '. mysqli_error($con));
+die('Error consulta de log: '. mysqli_error($con));
 
 echo "<h3>Roles</h3>
-<a href='nuevo.php'>Nuevo</a>
 <h3>Log</h3>
 <table>
 	<thead>

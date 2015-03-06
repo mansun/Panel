@@ -6,7 +6,7 @@ $sql = "SELECT usuID, usuNom, usuAlias, usuSit FROM usuario";
 $td = "";
 
 $resultado = mysqli_query($con,$sql) or
-die('Error seleccionar roles : '. mysqli_error($con));
+die('Error consulta de usuarios: '. mysqli_error($con));
 
 echo "<h3>Usuarios</h3>
 <a href='nuevo.php'>Nuevo</a>
