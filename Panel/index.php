@@ -69,26 +69,22 @@
 		<section class="diamante">
 		  <div class="container">
 				<h1 class="medium">Fernando Wirtz</h1>
-				<h4 class="normal">Bienvenido al panel de artículos del Panel DAWB</h4>
+				<h4 class="bienvenida">Bienvenido al panel de artículos del Panel DAWB</h4>
       </div>
     </section>
 		
-    <section class="articulos">
-    <div class="container">
-      <div class="page-header">
-        <h3>Listado de Artículos</h3>
-      </div>
+    
       <?php
 		 include 'modulos/articulo/consulta.php';
 ?> 
     </div>
     </section>
       
-    <footer class="footer">
+    <!-- <footer class="footer">
       <div class="container">
         <p class="text-muted">Copyright</p>
       </div>
-    </footer>
+    </footer> -->
 
 
     <!-- Bootstrap core JavaScript

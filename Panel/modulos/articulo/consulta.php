@@ -9,18 +9,21 @@ $resultado = mysqli_query($con,$sql) or
 die('Error consulta de artículos: '. mysqli_error($con));
 
 echo "
-<a href='nuevo.php'>Nuevo</a>
-<table>
+		<section class='articulos'>
+    <div class='container'>
+      <div class='page-header'>
+        <h3>Listado de Artículos</h3>
+		 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>
+      </div>
+		
+		  
+
+<table class='table'>
 	<thead>
 		<tr>
-			<th>ID</th>
-			<th>Fecha Creación</th>
-			<th>Título</th>
-			<th>Texto</th>
-			<th>Imagen</th>
-			<th>Layaout</th>
-			<th>Clasificado</th>
-			<th>Botones</th>
+			<th class='col-md-1'>Fecha</th>
+			<th class='col-md-9'>Artículo</th>
+			<th class='col-md-2'></th>
 		</tr>
 	</thead>
 	<tbody>";
@@ -32,15 +35,12 @@ while($fila = mysqli_fetch_array($resultado)){
 	$artImx = $fila['artImx'];
 	$artLayout = $fila['artLayout'];
 	$artClas = $fila['artClas'];
+	$usuNom = 'Enrique Prado Vilares';
 	echo "<tr>
-			<td>$artID</td>
 			<td>$artDatCre</td>
-			<td>$artTit</td>
-			<td>$artTxt</td>
-			<td>$artImx</td>
-			<td>$artLayout</td>
-			<td>$artClas</td>
-			<td><a href='edicion.php?id=$artID'>Editar</a><a href=''>Borrar</a></td>
+			<td><h4>$artTit por $usuNom</h4>$artTxt</td>
+			<td><a href='edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
+			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
 		</tr>";
 }
 echo "</tbody>";
