@@ -41,7 +41,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navbar-form navbar-right">
-            <li class="login"><a href="#" class="btn btn-default btn-sm" role="button">Registrarse</a></li>
+            <li class="login"><a href="#" class="btn btn-default btn-sm" role="button">Registro</a></li>
             <li class="login"><a href="#" class="btn btn-default btn-sm" role="button">Login</a></li>
           </ul>
           <form class="navbar-form navbar-right">
@@ -98,7 +98,7 @@
       
 	<footer class="footer">
       <div class="container">
-        <p class="text-muted">Copyright</p>
+        <p class="text-muted">© Copyright Enrique Prado - 2015</p>
       </div>
     </footer>
 
