@@ -65,7 +65,7 @@
 			</div>
 		  </div>
 	  </section>
-		  
+		 
 		<section class="diamante">
 		  <div class="container">
 				<h1 class="medium">Fernando Wirtz</h1>
@@ -78,6 +78,9 @@
       <div class="page-header">
         <h3>Listado de Artículos</h3>
       </div>
+      <?php
+		 include 'modulos/articulo/consulta.php';
+?> 
     </div>
     </section>
       

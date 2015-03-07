@@ -1,6 +1,6 @@
 <?php
 
-include '../../lib/conexion.php';
+include 'lib/conexion.php';
 
 $sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas FROM articulo";
 $td = "";
@@ -8,7 +8,7 @@ $td = "";
 $resultado = mysqli_query($con,$sql) or
 die('Error consulta de artículos: '. mysqli_error($con));
 
-echo "<h3>Artículos</h3>
+echo "
 <a href='nuevo.php'>Nuevo</a>
 <table>
 	<thead>

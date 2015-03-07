@@ -50,6 +50,7 @@ body {
 
 .navbar-static-top {
   border-width: 0 0 0px;
+  background: #FFF;
 }
 
 
@@ -68,7 +69,7 @@ body {
 .fa {
   margin-right: 5px;
 }
-.footer > .container {
+.footer {
   padding-top: 15px;
 }
 
