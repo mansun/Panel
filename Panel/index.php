@@ -48,7 +48,7 @@
             <input type="text" class="form-control" placeholder="Buscar...">
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Listado de Cursos</a></li>
+            <li><a href="#">Listado de Artículos</a></li>
             <li><a href="#">Contacto</a></li>
           </ul>
         </div>
@@ -68,8 +68,24 @@
 		 
 		<section class="diamante">
 		  <div class="container">
-				<h1 class="medium">Fernando Wirtz</h1>
-				<h4 class="bienvenida">Bienvenido al panel de artículos del Panel DAWB</h4>
+		  <div class="row">
+		  	<div class="foto col-md-1">
+		  		<img width="100" height="100" class="redondel" src="img/quique.jpg">
+		  	</div>
+				<div class="bienvenida col-md-5">
+				<h1>Fernando Wirtz</h1>
+				<h4 class="bienvenida">Bienvenido al panel de artículos DAWB de Enrique Prado</h4>
+				<ul class="list-inline">
+				<li><i class="fa fa-facebook-official"></i></li>
+				<li><i class="fa fa-linkedin-square"></i></li>
+				<li><i class="fa fa-twitter-square"></i></li>
+				<li><i class="fa fa-tumblr-square"></i></li>
+				</ul>
+				</div>
+</div>
+				
+
+
       </div>
     </section>
 		
@@ -80,11 +96,11 @@
     </div>
     </section>
       
-    <!-- <footer class="footer">
+	<footer class="footer">
       <div class="container">
         <p class="text-muted">Copyright</p>
       </div>
-    </footer> -->
+    </footer>
 
 
     <!-- Bootstrap core JavaScript

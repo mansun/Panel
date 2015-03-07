@@ -49,11 +49,9 @@ h4.bienvenida{
 }
 
 .footer {
-  position: absolute;
   bottom: 0;
   width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
+  height: 50px;
   background-color: #58585B;
 }
 
@@ -82,6 +80,11 @@ h4.bienvenida{
 .fa {
   margin-right: 5px;
 }
+
+.fa-paperclip {
+	color: #333;
+}
+
 .footer {
   padding-top: 15px;
 }
@@ -107,6 +110,29 @@ vertical-align: middle;
 .table>thead>tr>th {
 
 border-bottom: none;
+}
+
+.alias {
+	font-family: 'latobold';
+	font-size: 12px;
+	color: #D25C33;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.foto {
+	padding-top: 40px;
+}
+
+.redondel {
+	-moz-border-radius: 1000px;
+	-webkit-border-radius: 1000px;
+	border-radius: 1000px;
+}
+
+.bienvenida.col-md-5 {
+	padding-top: 15px;
+	margin-left: 30px;
 }
 
 

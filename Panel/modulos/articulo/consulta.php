@@ -35,10 +35,19 @@ while($fila = mysqli_fetch_array($resultado)){
 	$artImx = $fila['artImx'];
 	$artLayout = $fila['artLayout'];
 	$artClas = $fila['artClas'];
-	$usuNom = 'Enrique Prado Vilares';
+	$usuNom = 'Enrique Prado Vilares'; // Esto hay que cambiarlo
+	
+	if($artLayout != 1){
+		$iconClip = "<i class='fa fa-paperclip'></i>";
+	}
+	
+	else{
+		$iconClip = "";
+	}
+	
 	echo "<tr>
 			<td>$artDatCre</td>
-			<td><h4>$artTit por $usuNom</h4>$artTxt</td>
+			<td><h4>$artTit <span class='alias'>[$usuNom]</span>$iconClip</h4>$artTxt</td>
 			<td><a href='edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
 			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
 		</tr>";
