@@ -1,6 +1,7 @@
 <?php
-
-include 'lib/conexion.php';
+include '../../header.php';
+include '../../lib/conexion.php';
+include '../../lib/autenticacion.php';
 
 $sql = "SELECT usuID, usuNom, usuAlias, usuSit FROM usuario";
 
@@ -42,7 +43,7 @@ while($fila = mysqli_fetch_array($resultado)){
 			<td>$usuNom</td>
 			<td>$usuAlias</td>
 			<td>$usuSit</td>
-			<td><a href='modulos/usuario/edicion.php?id=$usuID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
+			<td><a href='edicion.php?id=$usuID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
 			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
 		</tr>";
 }
@@ -53,5 +54,5 @@ echo "			</tbody>
 
 mysqli_close($con);
 
-
+include '../../footer.php';
 ?>

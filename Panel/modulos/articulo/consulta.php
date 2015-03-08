@@ -1,7 +1,7 @@
 <?php
-
-include 'lib/conexion.php';
-include 'lib/autenticacion.php';
+include '../../header.php';
+include '../../lib/conexion.php';
+include '../../lib/autenticacion.php';
 
 
 $sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas FROM articulo";
@@ -65,7 +65,7 @@ while($fila = mysqli_fetch_array($resultado)){
 	echo "<tr>
 			<td>$artDatCre</td>
 			<td><h4>$artTit <span class='alias'>[$usuNom]</span>$iconClip</h4>$artTxt</td>
-			<td><a href='modulos/articulo/edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
+			<td><a href='edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
 			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
 		</tr>";
 }
@@ -76,5 +76,5 @@ echo "			</tbody>
 
 mysqli_close($con);
 
-
+include '../../footer.php';
 ?>

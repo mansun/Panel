@@ -1,7 +1,7 @@
 <?php
-
-include 'lib/conexion.php';
-include 'lib/autenticacion.php';
+include '../../header.php';
+include '../../lib/conexion.php';
+include '../../lib/autenticacion.php';
 
 $sql = "SELECT rolID, rolNom, tipoRolNom FROM rol INNER JOIN tipo_rol on rol.tipoRolID = tipo_rol.tipoRolID";
 
@@ -37,7 +37,7 @@ while($fila = mysqli_fetch_array($resultado)){
 	echo "<tr>
 			<td>$rolNom</td>
 			<td>$tipoRolNom</td>
-			<td><a href='modulos/rol/edicion.php?id=$rolID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
+			<td><a href='edicion.php?id=$rolID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
 			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
 		</tr>";
 }
@@ -48,6 +48,5 @@ echo "			</tbody>
 
 mysqli_close($con);
 
-
+include '../../footer.php';
 ?>
-

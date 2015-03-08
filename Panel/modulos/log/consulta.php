@@ -1,7 +1,7 @@
 <?php
-
-include 'lib/conexion.php';
-
+include '../../header.php';
+include '../../lib/conexion.php';
+include '../../lib/autenticacion.php';
 
 $sql = "SELECT logID, logDatEve, UsuID, logAction, logObserv FROM log";
 
@@ -44,5 +44,5 @@ echo "			</tbody>
 
 mysqli_close($con);
 
-
+include '../../footer.php';
 ?>
