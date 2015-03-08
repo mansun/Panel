@@ -3,6 +3,10 @@ include '../../header.php';
 include '../../lib/conexion.php';
 include '../../lib/autenticacion.php';
 
+/* if(!$isAdmin){
+ header('Location: ../../index.php');
+ }  */
+
 $sql = "SELECT logID, logDatEve, UsuID, logAction, logObserv FROM log";
 
 

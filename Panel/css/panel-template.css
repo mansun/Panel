@@ -143,6 +143,20 @@ border-bottom: none;
 	margin-bottom: 25px;
 }
 
+.formulario-login {
+	max-width: 330px;
+	padding-bottom: 15px;
+	margin: 0 auto;
+}
 
+.formulario-login .form-control:focus {
+	z-index: 2;
+}
+.formulario-login input[type="text"] {
+	margin-bottom: 10px;
+}
+.formulario-login input [type="password"] {
+	margin-bottom: 10px;
+}
 
 

@@ -11,8 +11,13 @@ die('Error consulta de usuarios: '. mysqli_error($con));
 echo "<section class='usuarios'>
     <div class='container'>
       <div class='page-header'>
-        <h3>Listado de Usuarios</h3>
-		 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>
+        <h3>Listado de Usuarios</h3>";
+		
+if ($isAdmin || $isEscritor){
+	echo "	 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>";
+
+}
+echo "
       </div>
 <table class='table'>
 	<thead>

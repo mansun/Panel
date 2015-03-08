@@ -32,7 +32,7 @@ if(isset($_POST['guardar'])) {
 }
 
 ?>
-<section class='edicion-articulos'>
+<section class='edicion-usuarios'>
     <div class='container'>
       <div class='page-header'>
         <h3>Editar usuario</h3>

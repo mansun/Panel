@@ -15,7 +15,7 @@ die('Error consulta de artículos: '. mysqli_error($con));
 /******* log del sistema ***/
 $accion = 'Consulta de artículo';
 $observaciones = 'No hay observaciones';
-$fechaActual = date('Y-m-d H:i:s');
+$fechaActual = date('d-m-Y');
 $sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
 mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 /****************************/

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Auditoria y Gestión de la Calidad">
+    <meta name="description" content="Proyecto de Desarrollo Web Entorno Servidor">
+    <meta name="author" content="Enrique Prado Vilares">
     <link rel="icon" href="../../favicon.ico">
 
     <title>Proyecto PHP</title>
@@ -39,8 +39,8 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navbar-form navbar-right">
-            <li class="login"><a href="#" class="btn btn-default btn-sm" role="button">Registro</a></li>
-            <li class="login"><a href="#" class="btn btn-default btn-sm" role="button">Login</a></li>
+            <li class="login"><a href="/panel/modulos/usuario/nuevo.php" class="btn btn-default btn-sm" role="button">Registro</a></li>
+            <li class="login"><a href="/panel/login.php" class="btn btn-default btn-sm" role="button">Login</a></li>
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Buscar...">
