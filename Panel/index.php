@@ -37,7 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Panel DAWB</a>
+          <a class="navbar-brand" href="index.php">Panel DAWB</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navbar-form navbar-right">
@@ -91,10 +91,9 @@
 		
     
       <?php
-		 include 'modulos/articulo/consulta.php';
+		 include 'modulos/log/consulta.php';
 ?> 
-    </div>
-    </section>
+    
       
 	<footer class="footer">
       <div class="container">

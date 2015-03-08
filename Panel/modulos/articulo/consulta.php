@@ -1,19 +1,36 @@
 <?php
 
 include 'lib/conexion.php';
+include 'lib/autenticacion.php';
+
 
 $sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas FROM articulo";
-$td = "";
+if($isAnonimo){
+	$sql .= " WHERE artClas = 0";
+}
 
 $resultado = mysqli_query($con,$sql) or
 die('Error consulta de artículos: '. mysqli_error($con));
+
+/******* log del sistema ***/
+$accion = 'Consulta de artículo';
+$observaciones = 'No hay observaciones';
+$fechaActual = date('Y-m-d H:i:s');
+$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
+mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
+/****************************/
 
 echo "
 		<section class='articulos'>
     <div class='container'>
       <div class='page-header'>
-        <h3>Listado de Artículos</h3>
-		 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>
+        <h3>Listado de Artículos</h3>";
+
+if ($isAdmin || $isEscritor){
+	echo "	 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>";
+	
+}
+echo "
       </div>
 		
 		  
@@ -52,8 +69,10 @@ while($fila = mysqli_fetch_array($resultado)){
 			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
 		</tr>";
 }
-echo "</tbody>";
-echo "</table>";
+echo "			</tbody>
+			</table>
+		</div>
+    </section>";
 
 mysqli_close($con);
 

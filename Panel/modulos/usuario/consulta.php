@@ -1,23 +1,25 @@
 <?php
 
-include '../../lib/conexion.php';
+include 'lib/conexion.php';
 
 $sql = "SELECT usuID, usuNom, usuAlias, usuSit FROM usuario";
-$td = "";
 
 $resultado = mysqli_query($con,$sql) or
 die('Error consulta de usuarios: '. mysqli_error($con));
 
-echo "<h3>Usuarios</h3>
-<a href='nuevo.php'>Nuevo</a>
-<table>
+echo "<section class='usuarios'>
+    <div class='container'>
+      <div class='page-header'>
+        <h3>Listado de Usuarios</h3>
+		 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>
+      </div>
+<table class='table'>
 	<thead>
 		<tr>
-			<th>ID</th>
-			<th>Nombre</th>
-			<th>Alias</th>
-			<th>Situación</th>
-			<th>Botones</th>
+			<th class='col-md-4'>Nombre</th>
+			<th class='col-md-3'>Alias</th>
+			<th class='col-md-3'>Situación</th>
+			<th class='col-md-2'></th>
 		</tr>
 	</thead>
 	<tbody>";
@@ -26,16 +28,28 @@ while($fila = mysqli_fetch_array($resultado)){
 	$usuNom = $fila['usuNom'];
 	$usuAlias = $fila['usuAlias'];
 	$usuSit = $fila['usuSit'];
+	
+	switch ($usuSit){
+		case 0: $usuSit="Inactivo";
+		break;
+		
+		case 1: $usuSit= "Activo";
+		break;
+	}
+
+	
 	echo "<tr>
-			<td>$usuID</td>
 			<td>$usuNom</td>
 			<td>$usuAlias</td>
 			<td>$usuSit</td>
-			<td><a href='edicion.php?id=$usuID'><a href=''>Borrar</a></td>
+			<td><a href='modulos/usuario/edicion.php?id=$usuID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
+			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
 		</tr>";
 }
-echo "</tbody>";
-echo "</table>";
+echo "			</tbody>
+			</table>
+		</div>
+    </section>";
 
 mysqli_close($con);
 
