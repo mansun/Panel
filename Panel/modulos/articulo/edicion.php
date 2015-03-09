@@ -80,7 +80,6 @@ if(isset($_POST['guardar'])) {
   </div>
   <button type="submit" name="guardar" value="guardar" class="btn btn-default">Guardar</button>
   </form>
-
      </div>
 </section>
 <?php
