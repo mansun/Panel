@@ -22,6 +22,7 @@ if(!$resultado) {
 	$artClas = $fila['artClas'];
 
 if(isset($_POST['guardar'])) {	
+		
 	$artDatCreGuardado = $_POST['artDatCre'];
 	$artTitGuardado = $_POST['artTit'];
 	$artTxtGuardado = $_POST['artTxt'];
@@ -56,9 +57,9 @@ if(isset($_POST['guardar'])) {
     <textarea class="form-control" rows="5" name="artTxt" id="artTxt"><?php echo $artTxt ?></textarea>
   </div>
   <div class="form-group">
-    <label for="exampleInputFile">Imagen</label>
-    <input type="file" id="exampleInputFile">
-    //<input type="text" name="artImx" value="<?php echo $artImx ?>"/>
+    <label for="artImx">Imagen</label>
+    <input type="file" name="artImx" id="artImx">
+    <input type="text" name="artImx" value="<?php echo $artImx ?>"/>
     <p class="help-block">Formatos admitidos: JPG y PNG. Tamaño máximo de archivo: 2MB</p>
   </div>
   <div class="form-group">
