@@ -30,7 +30,9 @@ if(isset($_POST['guardar'])) {
 	$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado', usuSit = '$usuSitGuardado' WHERE usuID = '$id'";
 	
 	mysqli_query($con,$sqlUpdate) or
-	die('Error: '. mysqli_error($con));			
+	die('Error: '. mysqli_error($con));	
+
+	header('location: consulta.php');
 }
 
 ?>
@@ -62,17 +64,23 @@ if(isset($_POST['guardar'])) {
   
 
   <?php
+
   
-  
+  		$isChecked ="";
 		while($fila = mysqli_fetch_array($resultadoRoles)){
    			$rol_rolID = $fila['rolID'];
    			$rol_rolNom = $fila['rolNom'];	
    			$rol_tipoRolID = $fila['tipoRolID'];
-   			$IsChecked = $rol_tipoRolID == true ? "checked":"";
+   			
+/* 		if ($rol_tipoRolID == "3"){
+            $isChecked = "checked='checked'";
+		} */
+   			
+   			$isChecked = $rol_tipoRolID == 0 ? "checked='checked'":"";
    			echo "
 		<div class='checkbox'>
 	  		<label>
-				<input type='checkbox' id='rolID' value='$rol_rolID' $IsChecked>$rol_rolNom
+				<input type='checkbox' id='rolID' value='$rol_tipoRolID' $isChecked>$rol_rolNom
 			</label>
 		</div>
    			";

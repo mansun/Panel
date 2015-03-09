@@ -34,7 +34,9 @@ if(isset($_POST['guardar'])) {
 		 artImx = '$artImxGuardado', artLayout ='$artLayoutGuardado', artClas ='$artClasGuardado' WHERE artID = '$id'";
 	
 	mysqli_query($con,$sqlUpdate) or
-	die('Error: '. mysqli_error($con));			
+	die('Error: '. mysqli_error($con));	
+
+	header('location: consulta.php');
 }
 
 ?>

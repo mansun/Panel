@@ -18,7 +18,9 @@ if(isset($_POST['guardar'])) {
 	$sqlUpdate = "INSERT INTO articulo (artDatCre, artTit, artTxt, artImx, artLayout, artClas) VALUES ('$artDatCreGuardado', '$artTitGuardado', '$artTxtGuardado', '$artImxGuardado', '$artLayoutGuardado', '$artClasGuardado')";
 	
 	mysqli_query($con,$sqlUpdate) or
-	die('Error: '. mysqli_error($con));			
+	die('Error: '. mysqli_error($con));	
+
+	header('location: consulta.php');
 }
 
 ?>

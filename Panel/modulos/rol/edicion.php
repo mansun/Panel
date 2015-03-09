@@ -37,6 +37,8 @@ if(isset($_POST['guardar'])) {
 	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
 	mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 	/****************************/
+	
+	header('location: consulta.php');
 }
 
 ?>

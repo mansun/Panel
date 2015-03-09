@@ -12,7 +12,9 @@ if(isset($_POST['guardar'])) {
 	$sqlInsert = "INSERT INTO usuario (usuNom, usuAlias, usuPw, usuSit) VALUES ('$usuNomGuardado', '$usuAliasGuardado', '$usuPwGuardado', '$usuSitGuardado')";
 	
 	mysqli_query($con,$sqlInsert) or
-	die('Error: '. mysqli_error($con));			
+	die('Error: '. mysqli_error($con));
+	
+	header('location: consulta.php');
 }
 
 ?>
