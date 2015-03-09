@@ -21,7 +21,7 @@ mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 /****************************/
 
 echo "
-		<section class='articulos'>
+		<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
         <h3>Listado de Artículos</h3>";

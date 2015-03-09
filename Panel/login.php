@@ -16,7 +16,7 @@ include 'lib/autenticacion.php';
     <label for="usuPw">Contraseña</label>
     <input type="password" class="form-control" name="usuPw" id="usuPw" value="">
   </div>
-  <button type="submit" name="guardar" value="guardar" class="btn btn-default">Guardar</button>
+  <button type="submit" name="enviar" value="enviar" class="btn btn-default">Enviar</button>
   </form>
 
      </div>

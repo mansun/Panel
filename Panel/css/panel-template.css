@@ -56,10 +56,12 @@ h4.bienvenida{
 }
 
 .footer {
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 50px;
   background-color: #58585B;
+  padding-top: 15px;
 }
 
 .navbar {
@@ -90,10 +92,6 @@ h4.bienvenida{
 
 .fa-paperclip {
 	color: #333;
-}
-
-.footer {
-  padding-top: 15px;
 }
 
 #menu-admin {
@@ -142,13 +140,8 @@ border-bottom: none;
 	margin-left: 30px;
 }
 
-.edicion-articulos {
-	margin-bottom: 25px;
-}
-
 .formulario-login {
 	max-width: 330px;
-	padding-bottom: 15px;
 	margin: 0 auto;
 }
 
@@ -160,6 +153,10 @@ border-bottom: none;
 }
 .formulario-login input [type="password"] {
 	margin-bottom: 10px;
+}
+
+section.contenido {
+	margin-bottom: 80px;
 }
 
 

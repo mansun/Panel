@@ -13,7 +13,7 @@ $sql = "SELECT logID, logDatEve, UsuID, logAction, logObserv FROM log";
 $resultado = mysqli_query($con,$sql) or
 die('Error consulta de log: '. mysqli_error($con));
 
-echo "<section class='log'>
+echo "<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
         <h3>Log</h3>

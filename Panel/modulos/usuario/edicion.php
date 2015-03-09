@@ -6,8 +6,10 @@ include '../../lib/autenticacion.php';
 $id =$_GET['id'];
 
 $sql = "SELECT * FROM usuario WHERE usuID  = '$id'";
+$sqlRoles = "SELECT * FROM rol";
 
 $resultado = mysqli_query($con,$sql);
+$resultadoRoles = mysqli_query($con,$sqlRoles);
 
 $fila = mysqli_fetch_assoc($resultado);
 
@@ -32,7 +34,7 @@ if(isset($_POST['guardar'])) {
 }
 
 ?>
-<section class='edicion-usuarios'>
+<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
         <h3>Editar usuario</h3>
@@ -57,6 +59,31 @@ if(isset($_POST['guardar'])) {
         <option value="1" <?php echo $usuSit == 1?"selected":"" ?>>Activo</option>
       </select>
   </div>
+  
+
+  <?php
+  
+  
+		while($fila = mysqli_fetch_array($resultadoRoles)){
+   			$rol_rolID = $fila['rolID'];
+   			$rol_rolNom = $fila['rolNom'];	
+   			$rol_tipoRolID = $fila['tipoRolID'];
+   			$IsChecked = $rol_tipoRolID == true ? "checked":"";
+   			echo "
+		<div class='checkbox'>
+	  		<label>
+				<input type='checkbox' id='rolID' value='$rol_rolID' $IsChecked>$rol_rolNom
+			</label>
+		</div>
+   			";
+		}
+		
+		
+   	
+	?>
+	
+
+  
   <button type="submit" name="guardar" value="guardar" class="btn btn-default">Guardar</button>
   </form>
 

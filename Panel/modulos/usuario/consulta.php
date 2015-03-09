@@ -8,7 +8,7 @@ $sql = "SELECT usuID, usuNom, usuAlias, usuSit FROM usuario";
 $resultado = mysqli_query($con,$sql) or
 die('Error consulta de usuarios: '. mysqli_error($con));
 
-echo "<section class='usuarios'>
+echo "<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
         <h3>Listado de Usuarios</h3>";

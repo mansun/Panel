@@ -22,7 +22,7 @@ if(isset($_POST['guardar'])) {
 }
 
 ?>
-<section class='edicion-articulos'>
+<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
         <h3>Nuevo artículo</h3>

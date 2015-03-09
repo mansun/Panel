@@ -15,7 +15,7 @@ $fechaActual = date('Y-m-d H:i:s');
 $sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
 mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 /****************************/
-echo "<section class='articulos'>
+echo "<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
         <h3>Roles</h3>
