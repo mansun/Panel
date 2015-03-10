@@ -1,23 +1,31 @@
 <?php
 include '../../header.php';
-include '../../lib/conexion.php';
-include '../../lib/autenticacion.php';
 
 
-$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas FROM articulo";
+$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.artUsuID = usuario.usuID";
 if($isAnonimo){
-	$sql .= " WHERE artClas = 0";
+	$sql .= " WHERE artClas = 0"; //Solo puede ver tipo 0 - Publico
+}else{
+	if (!$isLector && !$isAdmin){
+	$sql .= " WHERE artClas in (0, 1)"; //No es lector ni admin, sólo es escritor => solo pued ever tipos 0 y 1
+	}
 }
 
 $resultado = mysqli_query($con,$sql) or
 die('Error consulta de artículos: '. mysqli_error($con));
 
 /******* log del sistema ***/
+
 $accion = 'Consulta de listado de artículos';
 $observaciones = 'No hay observaciones';
 $fechaActual = date('Y-m-d');
-$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
+if (isset($usuarioID)){
+	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";	
+}else{
+	$sqlLog = "INSERT INTO log (logDatEve, logAction, logObserv) VALUES ('$fechaActual', '$accion','$observaciones')";
+}
 mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
+
 /****************************/
 
 echo "
@@ -52,7 +60,7 @@ while($fila = mysqli_fetch_array($resultado)){
 	$artImx = $fila['artImx'];
 	$artLayout = $fila['artLayout'];
 	$artClas = $fila['artClas'];
-	$usuNom = 'Enrique Prado Vilares'; // Esto hay que cambiarlo
+	$usuNom = $fila['usuNom'];
 	
 	if($artLayout != 1){
 		$iconClip = "<i class='fa fa-paperclip'></i>";

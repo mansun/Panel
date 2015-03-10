@@ -1,3 +1,7 @@
+<?php 
+include 'lib/conexion.php';
+include 'lib/autenticacion.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -40,7 +44,15 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navbar-form navbar-right">
             <li class="login"><a href="/panel/modulos/usuario/nuevo.php" class="btn btn-default btn-sm" role="button">Registro</a></li>
-            <li class="login"><a href="/panel/login.php" class="btn btn-default btn-sm" role="button">Login</a></li>
+            <?php
+            if ($isAnonimo){
+            	echo '<li class="login"><a href="/panel/login.php" class="btn btn-default btn-sm" role="button">Login</a></li>';
+            } else{
+            	echo '<li class="login"><a href="/panel/login.php" class="btn btn-default btn-sm" role="button">Perfil</a></li>';
+            	echo '<li class="login"><a href="/panel/logout.php" class="btn btn-default btn-sm" role="button">Logout</a></li>';
+            }
+            ?>
+            
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Buscar...">

@@ -6,10 +6,8 @@ include '../../lib/autenticacion.php';
 $id =$_GET['id'];
 
 $sql = "SELECT * FROM usuario WHERE usuID  = '$id'";
-$sqlRoles = "SELECT * FROM rol";
 
 $resultado = mysqli_query($con,$sql);
-$resultadoRoles = mysqli_query($con,$sqlRoles);
 
 $fila = mysqli_fetch_assoc($resultado);
 
@@ -27,11 +25,25 @@ if(isset($_POST['guardar'])) {
 	$usuPwGuardado = $_POST['usuPw'];
 	$usuSitGuardado = $_POST['usuSit'];
 	
+	
 	$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado', usuSit = '$usuSitGuardado' WHERE usuID = '$id'";
 	
 	mysqli_query($con,$sqlUpdate) or
-	die('Error: '. mysqli_error($con));	
+		die('Error: '. mysqli_error($con));	
 
+	//Guardamos los roles
+	//1. Borramos las relaciones antiguas
+	mysqli_query($con, "DELETE FROM usuario_rol WHERE usuID=$id") or
+		die('Error: '. mysqli_error($con));
+	
+	//2. Insertamos las relaciones nuevas
+	if(!empty($_POST['roles'])) {
+		foreach($_POST['roles'] as $rolID) {
+			mysqli_query($con, "INSERT INTO usuario_rol (usuID, rolID) VALUES ($id, $rolID)") or
+				die('Error: '. mysqli_error($con));
+		}
+	}
+	
 	header('location: consulta.php');
 }
 
@@ -65,25 +77,30 @@ if(isset($_POST['guardar'])) {
 
   <?php
 
+  //Obtenemos todos los roles de la tabla "ROL"
+  $sqlRoles = "SELECT * FROM rol";
+	$resultadoRoles = mysqli_query($con,$sqlRoles);
   
   		$isChecked ="";
 		while($fila = mysqli_fetch_array($resultadoRoles)){
    			$rol_rolID = $fila['rolID'];
    			$rol_rolNom = $fila['rolNom'];	
-   			$rol_tipoRolID = $fila['tipoRolID'];
    			
-/* 		if ($rol_tipoRolID == "3"){
-            $isChecked = "checked='checked'";
-		} */
+   			//Para cada rol miramos si está relacionado con el usuario en la tabla/relacion "usuario_rol"
+   			$sqlRelacionUsuarioRol = "SELECT * FROM usuario_rol WHERE rolID=$rol_rolID AND usuID=$id";
+   			$resultadoRelacionUsuarioRol = mysqli_query($con,$sqlRelacionUsuarioRol);
    			
-   			$isChecked = $rol_tipoRolID == 0 ? "checked='checked'":"";
-   			echo "
-		<div class='checkbox'>
-	  		<label>
-				<input type='checkbox' id='rolID' value='$rol_tipoRolID' $isChecked>$rol_rolNom
-			</label>
-		</div>
-   			";
+   			//Si la consulta anterior devuelve resultados, entonces el usuario está relacionado con el rol actual ($rol_rolID)  
+   			if (mysqli_fetch_array($resultadoRelacionUsuarioRol)){
+   				$isChecked = "checked='checked'";
+   			}else{
+   				$isChecked = "";
+   			}
+   			echo "<div class='checkbox'>
+   				  	<label>
+   				  		<input type='checkbox' id='roles[]' name='roles[]' value='$rol_rolID' $isChecked>$rol_rolNom
+   				  	</label>
+   				  </div>";
 		}
 		
 		

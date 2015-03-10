@@ -1,7 +1,50 @@
 <?php
 include 'header.php';
-include 'lib/conexion.php';
-include 'lib/autenticacion.php';
+
+
+if(isset($_POST['enviar'])) {
+	$usuAlias = $_POST['usuAlias'];
+	$usuPw = $_POST['usuPw'];
+	
+	$sqlSelect = "SELECT * FROM usuario WHERE usuAlias='$usuAlias'";
+	$resultado = mysqli_query($con,$sqlSelect);
+	$fila = mysqli_fetch_assoc($resultado);
+	
+	//Si la consulta anterior devuelve resultados, entonces el usuario está relacionado con el rol actual ($rol_rolID)
+	if ($resultado){
+		//if ($fila['usuPw'] == password_hash($usuPw, PASSWORD_DEFAULT)){
+		if ($fila['usuPw'] == $usuPw){
+			//1. Usuario autenticado
+			//> Guardar en sesion sus datos: id, nombre y activo
+			$_SESSION["usuID"] = $fila['usuID'];
+			$_SESSION["usuNom"] = $fila['usuNom'];
+			$_SESSION["isActivo"] = $fila['usuSit'] == 1;
+			
+			//2. Busqueda de roles
+			$sqlSelect = "SELECT rol.tipoRolID FROM usuario_rol inner join rol on usuario_rol.rolID = rol.rolID WHERE usuID=".$fila['usuID'];
+			$resultado = mysqli_query($con,$sqlSelect);
+			$roles = array();
+			while($fila = mysqli_fetch_array($resultado)){ 
+				array_push($roles, $fila['tipoRolID']); 
+			}
+			$_SESSION["isAdmin"] = in_array(1, $roles);
+			$_SESSION["isLector"] =  in_array(2, $roles); 
+			$_SESSION["isEscritor"] =  in_array(3, $roles);
+
+			//header('location: index.php'); //Arreglar esto! XD
+			echo "Buenos días, Mr ".$_SESSION["usuNom"];
+			exit();
+			
+		}
+	}
+	//Usuario no autenticado => mostrar mensaje
+}
+
+if (!$isAnonimo){
+	echo "Buenos días, Mr ".$_SESSION["usuNom"];
+	exit();
+}
+
 ?>
     <div class='container'>
       <div class='page-header'>
