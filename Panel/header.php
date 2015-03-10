@@ -58,7 +58,6 @@ include 'lib/autenticacion.php';
             <input type="text" class="form-control" placeholder="Buscar...">
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Listado de Artículos</a></li>
             <li><a href="#">Contacto</a></li>
           </ul>
         </div>
