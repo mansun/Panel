@@ -1,6 +1,7 @@
 <?php 
 include 'lib/conexion.php';
 include 'lib/autenticacion.php';
+setlocale(LC_ALL,"es_ES");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -70,7 +71,7 @@ include 'lib/autenticacion.php';
 		<section id="menu-admin">
 			<div class="container">
 			  <div class="row">  
-				<div class="col-md-3"><a href="/panel/modulos/articulo/consulta.php"><i class="fa fa-file-text-o"></i>Artículos</a></div>
+				<div class="col-md-3"><a href="/panel/index.php"><i class="fa fa-file-text-o"></i>Artículos</a></div>
 				<?php
 		            if ($isAdmin) {
 		            	echo '<div class="col-md-3"><a href="/panel/modulos/usuario/consulta.php"><i class="fa fa-user"></i>Usuarios</a></div>

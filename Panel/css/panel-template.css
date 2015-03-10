@@ -40,11 +40,8 @@ thead {
 
 h4 {
 	margin-bottom: 5px;
-	
-}
-
-h4 a {
 	color: #62AEB9;
+	
 }
 
 label {
@@ -109,7 +106,7 @@ h4.bienvenida{
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 
 border-top: 1px solid #F1F1F1;
-vertical-align: middle;
+
 }
 
 .table>thead>tr>th {
@@ -121,8 +118,6 @@ border-bottom: none;
 	font-family: 'latobold';
 	font-size: 12px;
 	color: #D25C33;
-	margin-left: 5px;
-	margin-right: 5px;
 }
 
 .foto {
@@ -157,6 +152,19 @@ border-bottom: none;
 
 section.contenido {
 	margin-bottom: 80px;
+}
+
+.clip {
+	text-align: center;
+}
+
+.titulo {
+	color: #62AEB9;
+	font-size: 18px;
+	margin-right: 10px;
+}
+.table>tbody>tr>td.noticia {
+	vertical-align: middle;
 }
 
 

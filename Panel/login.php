@@ -31,8 +31,7 @@ if(isset($_POST['enviar'])) {
 			$_SESSION["isLector"] =  in_array(2, $roles); 
 			$_SESSION["isEscritor"] =  in_array(3, $roles);
 
-			//header('location: index.php'); //Arreglar esto! XD
-			header('location: perfil.php'); 
+			header('location: index.php'); 
 			
 			//echo "Buenos días, Mr ".$_SESSION["usuNom"];
 			//exit();

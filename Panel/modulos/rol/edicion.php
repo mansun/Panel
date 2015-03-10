@@ -1,9 +1,9 @@
 <?php
 include '../../header.php';
 
-/* if(!$isAdmin){
+if(!$isAdmin){
  header('Location: ../../index.php');
- }  */
+ } 
 
 
 $id =$_GET['id'];

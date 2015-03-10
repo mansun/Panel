@@ -1,9 +1,9 @@
 <?php
 include '../../header.php';
 
-/* if(!$isAdmin){
+if(!$isAdmin){
  header('Location: ../../index.php');
- }  */
+ }
 
 $sql = "SELECT rolID, rolNom, tipoRolNom FROM rol INNER JOIN tipo_rol on rol.tipoRolID = tipo_rol.tipoRolID";
 

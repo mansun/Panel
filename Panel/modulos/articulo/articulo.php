@@ -1,27 +1,44 @@
 <?php
+include '../../header.php';
 
+$id =$_GET['id'];
 
-$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID";
+$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID WHERE artID  = '$id'";
+
 if($isAnonimo){
-	$sql .= " WHERE artClas = 0"; //Solo puede ver tipo 0 - Publico
-	echo 'Aquí no hay nada que ver';
+	$sql .= " AND artClas = 0"; //Solo puede ver tipo 0 - Publico
 }else{
 	if (!$isLector && !$isAdmin){
-	$sql .= " WHERE artClas in (0, 1)"; //No es lector ni admin, sólo es escritor => solo pued ever tipos 0 y 1
+		$sql .= " AND artClas in (0, 1)"; //No es lector ni admin, sólo es escritor => solo pued ever tipos 0 y 1
 	}
 }
 
 $resultado = mysqli_query($con,$sql) or
 die('Error consulta de artículos: '. mysqli_error($con));
 
+/******* log del sistema ***/
+
+$accion = 'Consultó 1 artículo';
+$observaciones = 'No hay observaciones';
+$fechaActual = date('Y-m-d H:i:s');
+
+if (isset($usuarioID)){
+	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";	
+}else{
+	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', NULL, '$accion','$observaciones')";
+}
+mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
+
+/****************************/
+
 echo "
 		<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
-        <h3>Listado de Artículos</h3>";
+        <h3>Artículo</h3>";
 
 if ($isAdmin || $isEscritor){
-	echo "	 <a href='modulos/articulo/nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>";
+	echo "	 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>";
 	
 }
 echo "
@@ -33,8 +50,7 @@ echo "
 	<thead>
 		<tr>
 			<th class='col-md-1'>Fecha</th>
-			<th class='col-md-1 clip'><i class='fa fa-paperclip'></i></th>
-			<th class='col-md-8'>Artículo</th>
+			<th class='col-md-9'>Artículo</th>
 			<th class='col-md-2'></th>
 		</tr>
 	</thead>
@@ -57,16 +73,15 @@ while($fila = mysqli_fetch_array($resultado)){
 		$iconClip = "";
 	}
 	
-	if(strlen($fila['artTxt']) > 150){
-		$artTxt = substr($fila['artTxt'], 0,150)." (...)";
+	if(strlen($fila['artTxt']) > 250){
+		$artTxt = substr($fila['artTxt'], 0,250)." (...)";
 	}
 	
 	
 	
 	echo "<tr>
 			<td>$artDatCre</td>
-			<td class='clip'>$iconClip</td>
-			<td class='noticia'><a href='modulos/articulo/articulo.php?id=$artID' class='titulo'>$artTit</a>$artTxt<br /><span class='alias'>[$usuNom]</span></td>";
+			<td><h4>$artTit <span class='alias'>[$usuNom]</span>$iconClip</h4>$artTxt</td>";
 	
 	if ($isAdmin || $isEscritor){
 		echo "<td><a href='modulos/articulo/edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
@@ -83,5 +98,6 @@ echo "			</tbody>
     </section>";
 
 mysqli_close($con);
-
+include '../../footer.php';
 ?>
+
