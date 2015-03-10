@@ -1,6 +1,11 @@
 <?php
 include '../../header.php';
 
+if(!$isAdmin && !$isEscritor){
+	header('Location: ../../index.php');
+};
+
+
 $id =$_GET['id'];
 
 $sql = "SELECT * FROM articulo WHERE artID  = '$id'";

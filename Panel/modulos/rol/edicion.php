@@ -1,6 +1,11 @@
 <?php
 include '../../header.php';
 
+/* if(!$isAdmin){
+ header('Location: ../../index.php');
+ }  */
+
+
 $id =$_GET['id'];
 
 $sql = "SELECT * FROM rol WHERE rolID  = '$id'";

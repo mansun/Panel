@@ -1,11 +1,7 @@
 <?php
-include '../../header.php';
+include 'header.php';
 
-if(!$isAdmin){
-	header('Location: ../../index.php');
-} 
-
-$id =$_GET['id'];
+$id = $usuarioID;
 
 $sql = "SELECT * FROM usuario WHERE usuID  = '$id'";
 
@@ -46,14 +42,14 @@ if(isset($_POST['guardar'])) {
 		}
 	}
 	
-	header('location: consulta.php');
+	header('location: index.php');
 }
 
 ?>
 <section class='contenido'>
     <div class='container'>
       <div class='page-header'>
-        <h3>Editar usuario</h3>
+        <h3>Editar perfil</h3>
       </div>
       <form method="post">
   <div class="form-group">
@@ -100,7 +96,7 @@ if(isset($_POST['guardar'])) {
    			}
    			echo "<div class='checkbox'>
    				  	<label>
-   				  		<input type='checkbox' id='roles[]' name='roles[]' value='$rol_rolID' $isChecked>$rol_rolNom
+   				  		<input type='checkbox' id='roles[]' name='roles[]' value='$rol_rolID'disabled $isChecked>$rol_rolNom
    				  	</label>
    				  </div>";
 		}
@@ -117,5 +113,5 @@ if(isset($_POST['guardar'])) {
      </div>
 </section>
 <?php
-include '../../footer.php';
+include 'footer.php';
 ?>

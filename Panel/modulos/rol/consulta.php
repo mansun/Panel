@@ -1,6 +1,10 @@
 <?php
 include '../../header.php';
 
+/* if(!$isAdmin){
+ header('Location: ../../index.php');
+ }  */
+
 $sql = "SELECT rolID, rolNom, tipoRolNom FROM rol INNER JOIN tipo_rol on rol.tipoRolID = tipo_rol.tipoRolID";
 
 $resultado = mysqli_query($con,$sql) or
@@ -17,7 +21,7 @@ echo "<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
         <h3>Roles</h3>
-		 <a href='modulos/rol/nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>
+		 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>
       </div>
 <table class='table'>
 	<thead>

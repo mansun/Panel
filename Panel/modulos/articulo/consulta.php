@@ -2,7 +2,7 @@
 include '../../header.php';
 
 
-$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.artUsuID = usuario.usuID";
+$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID";
 if($isAnonimo){
 	$sql .= " WHERE artClas = 0"; //Solo puede ver tipo 0 - Publico
 }else{
@@ -22,7 +22,7 @@ $fechaActual = date('Y-m-d');
 if (isset($usuarioID)){
 	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";	
 }else{
-	$sqlLog = "INSERT INTO log (logDatEve, logAction, logObserv) VALUES ('$fechaActual', '$accion','$observaciones')";
+	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', NULL, '$accion','$observaciones')";
 }
 mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 
@@ -33,6 +33,7 @@ echo "
     <div class='container'>
       <div class='page-header'>
         <h3>Listado de Artículos</h3>";
+echo "soy admin? ".$isAdmin;
 
 if ($isAdmin || $isEscritor){
 	echo "	 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>";
@@ -74,12 +75,20 @@ while($fila = mysqli_fetch_array($resultado)){
 		$artTxt = substr($fila['artTxt'], 0,250)." (...)";
 	}
 	
+	
+	
 	echo "<tr>
 			<td>$artDatCre</td>
-			<td><h4><a href='articulo.php?id=$artID'>$artTit </a><span class='alias'>[$usuNom]</span>$iconClip</h4>$artTxt</td>
-			<td><a href='edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
-			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
-		</tr>";
+			<td><h4><a href='articulo.php?id=$artID'>$artTit </a><span class='alias'>[$usuNom]</span>$iconClip</h4>$artTxt</td>";
+	
+	if ($isAdmin || $isEscritor){
+		echo "<td><a href='edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
+		<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>";
+	
+	}
+	
+	echo "</tr>";
+
 }
 echo "			</tbody>
 			</table>

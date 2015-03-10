@@ -1,9 +1,9 @@
 <?php
 include '../../header.php';
 
-/* if(!$isAdmin && !$isEscritor){
+if(!$isAdmin && !$isEscritor){
 	header('Location: ../../index.php');
-} */
+}
 
 if(isset($_POST['guardar'])) {	
 	$artDatCreGuardado = $_POST['artDatCre'];
@@ -13,7 +13,7 @@ if(isset($_POST['guardar'])) {
 	$artLayoutGuardado = $_POST['artLayout'];
 	$artClasGuardado = $_POST['artClas'];
 	
-	$sqlUpdate = "INSERT INTO articulo (artDatCre, artTit, artTxt, artImx, artLayout, artClas, artUsuID) VALUES ('$artDatCreGuardado', '$artTitGuardado', '$artTxtGuardado', '$artImxGuardado', '$artLayoutGuardado', '$artClasGuardado', $usuarioID)";
+	$sqlUpdate = "INSERT INTO articulo (artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuID) VALUES ('$artDatCreGuardado', '$artTitGuardado', '$artTxtGuardado', '$artImxGuardado', '$artLayoutGuardado', '$artClasGuardado', $usuarioID)";
 	
 	mysqli_query($con,$sqlUpdate) or
 	die('Error: '. mysqli_error($con));	

@@ -1,6 +1,10 @@
 <?php
 include '../../header.php';
 
+/* if(!$isAdmin){
+ header('Location: ../../index.php');
+ }  */
+
 $sqlTipos = "SELECT * FROM tipo_rol";
 
 $resultadoTipos = mysqli_query($con,$sqlTipos);

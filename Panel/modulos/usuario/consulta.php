@@ -1,6 +1,10 @@
 <?php
 include '../../header.php';
 
+if(!$isAdmin){
+ header('Location: ../../index.php');
+ } 
+
 $sql = "SELECT usuID, usuNom, usuAlias, usuSit FROM usuario";
 
 $resultado = mysqli_query($con,$sql) or

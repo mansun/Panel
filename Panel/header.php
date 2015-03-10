@@ -43,12 +43,15 @@ include 'lib/autenticacion.php';
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="navbar-form navbar-right">
-            <li class="login"><a href="/panel/modulos/usuario/nuevo.php" class="btn btn-default btn-sm" role="button">Registro</a></li>
             <?php
+            if ($isAdmin) {
+            	echo '<li class="login"><a href="/panel/modulos/usuario/nuevo.php" class="btn btn-default btn-sm" role="button">Registro</a></li>';
+            }
+            
             if ($isAnonimo){
             	echo '<li class="login"><a href="/panel/login.php" class="btn btn-default btn-sm" role="button">Login</a></li>';
             } else{
-            	echo '<li class="login"><a href="/panel/login.php" class="btn btn-default btn-sm" role="button">Perfil</a></li>';
+            	echo '<li class="login"><a href="/panel/perfil.php" class="btn btn-default btn-sm" role="button">Perfil</a></li>';
             	echo '<li class="login"><a href="/panel/logout.php" class="btn btn-default btn-sm" role="button">Logout</a></li>';
             }
             ?>
@@ -68,9 +71,14 @@ include 'lib/autenticacion.php';
 			<div class="container">
 			  <div class="row">  
 				<div class="col-md-3"><a href="/panel/modulos/articulo/consulta.php"><i class="fa fa-file-text-o"></i>Artículos</a></div>
-				<div class="col-md-3"><a href="/panel/modulos/usuario/consulta.php"><i class="fa fa-user"></i>Usuarios</a></div>
-				<div class="col-md-3"><a href="/panel/modulos/rol/consulta.php"><i class="fa fa-lock"></i>Roles</a></div>
-				<div class="col-md-3"><a href="/panel/modulos/log/consulta.php"><i class="fa fa-list-alt"></i>Logs</a></div>
+				<?php
+		            if ($isAdmin) {
+		            	echo '<div class="col-md-3"><a href="/panel/modulos/usuario/consulta.php"><i class="fa fa-user"></i>Usuarios</a></div>
+						<div class="col-md-3"><a href="/panel/modulos/rol/consulta.php"><i class="fa fa-lock"></i>Roles</a></div>
+						<div class="col-md-3"><a href="/panel/modulos/log/consulta.php"><i class="fa fa-list-alt"></i>Logs</a></div>';
+		            }
+            	?>
+
 			</div>
 		  </div>
 	  </section>

@@ -1,6 +1,11 @@
 <?php
 include '../../header.php';
 
+if(!$isAdmin){
+	header('Location: ../../index.php');
+};
+
+
 if(isset($_POST['guardar'])) {	
 	$usuNomGuardado = $_POST['usuNom'];
 	$usuAliasGuardado = $_POST['usuAlias'];
