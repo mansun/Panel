@@ -1,7 +1,5 @@
 <?php
 include '../../header.php';
-include '../../lib/conexion.php';
-include '../../lib/autenticacion.php';
 
 $id =$_GET['id'];
 
