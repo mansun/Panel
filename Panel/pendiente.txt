@@ -1,0 +1,31 @@
+Comprobar permisos y roles
+ - Comprobar Escritor:
+	Usuario “Registrado” que puede escribir artículos.
+	Puede modificar su perfil.
+	No puede leer artículos “clasificados” salvo que tambien tenga el rol “Lector”.
+	
+Comprobar altas y modificaciones
+
+Registrar acciones de log
+
+Poder subir imagen (.png y .jpg) y guardar la ruta
+
+Incluir imagen segun Layout
+
+Ordenar artículos por fecha descendente (el más reciente primero).
+
+Ordenar log por fecha descendente
+
+Búsqueda
+
+Cambiar el formato de fecha para español
+
+Mostrar mensajes cuando se realiza alguna acción (nuevo y edición)
+
+Validar los formularios (no introducir caracteres extraños, campos vacíos)
+
+Eliminar variables innecesarias
+
+Mostrar quien está logueado en la parte de arriba
+
+Maquetación responsive
