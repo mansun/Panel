@@ -7,7 +7,6 @@ $sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usu
 
 if($isAnonimo){
 	$sql .= " AND artClas = 0"; //Solo puede ver tipo 0 - Publico
-	echo 'Aquí no hay nada que ver';
 }else{
 	if (!$isLector && !$isAdmin){
 		$sql .= " AND artClas in (0, 1)"; //No es lector ni admin, sólo es escritor => solo pued ever tipos 0 y 1
@@ -37,6 +36,9 @@ while($fila = mysqli_fetch_array($resultado)){
 	$artDatCre = $fila['artDatCre'];
 	$artTit = $fila['artTit'];
 	$artTxt = $fila['artTxt'];
+	
+	$artTxt = nl2br(htmlentities($artTxt, ENT_QUOTES, 'UTF-8'));
+	
 	$artImx = $fila['artImx'];
 	$artLayout = $fila['artLayout'];
 	$artClas = $fila['artClas'];

@@ -1,7 +1,7 @@
 <?php
 
 
-$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID ORDER BY artDatCre DESC";
+$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID ";
 if($isAnonimo){
 	$sql .= " WHERE artClas = 0"; //Solo puede ver tipo 0 - Publico
 	
@@ -10,6 +10,8 @@ if($isAnonimo){
 	$sql .= " WHERE artClas in (0, 1)"; //No es lector ni admin, sólo es escritor => solo pued ever tipos 0 y 1
 	}
 }
+
+$sql .= " ORDER BY artDatCre DESC";
 
 $resultado = mysqli_query($con,$sql) or
 die('Error consulta de artículos: '. mysqli_error($con));

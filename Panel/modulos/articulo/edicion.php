@@ -24,6 +24,14 @@ if(!$resultado) {
 	$artLayout = $fila['artLayout'];
 	$artClas = $fila['artClas'];
 
+//Validación del usuario: sólo los lectores y los administradores pueden ver articulos clasificados (2)
+if (($artClas == 2) && (!$isAdmin) && (!$isLector))
+{
+	//Este es un articulo clasificado y no eres ni admin ni lector, entonces..
+	//No tienes permiso...
+	header('Location: ../../index.php');
+}	
+	
 if(isset($_POST['guardar'])) {	
 		
 	$artDatCreGuardado = $_POST['artDatCre'];
