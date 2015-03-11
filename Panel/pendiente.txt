@@ -5,6 +5,7 @@ Mostrar mensajes cuando se realiza alguna acción (nuevo y edición) (dificil)
 Registrar acciones de log (fácil)
 Cambiar el formato de fecha para español (facil)
 Mostrar quien está logueado en la parte de arriba (facil)
+Mostrar el usuario en el Log (facil)
 
 Validar los formularios (no introducir caracteres extraños, campos vacíos) (facil)
 Eliminar variables innecesarias (facil)
