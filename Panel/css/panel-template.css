@@ -167,4 +167,22 @@ section.contenido {
 	vertical-align: middle;
 }
 
+.table>tbody>tr>td.edicion {
+	vertical-align: middle;
+}
+
+.titulo-ampliado {
+	color: #62AEB9;
+	font-size: 22px;
+	margin-right: 10px;
+}
+.detalles {
+	margin-bottom: 10px;
+}
+
+.botones-articulo-ampliado{
+	margin-top: 10px;
+}
+
+
 

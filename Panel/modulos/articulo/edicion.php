@@ -39,7 +39,7 @@ if(isset($_POST['guardar'])) {
 	mysqli_query($con,$sqlUpdate) or
 	die('Error: '. mysqli_error($con));	
 
-	header('location: consulta.php');
+	header('location: ../../index.php');
 }
 
 ?>

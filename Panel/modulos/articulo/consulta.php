@@ -4,7 +4,7 @@
 $sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID";
 if($isAnonimo){
 	$sql .= " WHERE artClas = 0"; //Solo puede ver tipo 0 - Publico
-	echo 'Aquí no hay nada que ver';
+	
 }else{
 	if (!$isLector && !$isAdmin){
 	$sql .= " WHERE artClas in (0, 1)"; //No es lector ni admin, sólo es escritor => solo pued ever tipos 0 y 1
@@ -66,15 +66,17 @@ while($fila = mysqli_fetch_array($resultado)){
 	echo "<tr>
 			<td>$artDatCre</td>
 			<td class='clip'>$iconClip</td>
-			<td class='noticia'><a href='modulos/articulo/articulo.php?id=$artID' class='titulo'>$artTit</a>$artTxt<br /><span class='alias'>[$usuNom]</span></td>";
+			<td class='noticia'><a href='modulos/articulo/articulo.php?id=$artID' class='titulo'>$artTit</a>$artTxt<br /><span class='alias'>[$usuNom]</span></td>
+			<td class='edicion'>";
 	
 	if ($isAdmin || $isEscritor){
-		echo "<td><a href='modulos/articulo/edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
-		<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>";
+		echo "<a href='modulos/articulo/edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
+		<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a>";
 	
 	}
 	
-	echo "</tr>";
+	echo "</td>
+			</tr>";
 
 }
 echo "			</tbody>

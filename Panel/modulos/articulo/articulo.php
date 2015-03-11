@@ -7,6 +7,7 @@ $sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usu
 
 if($isAnonimo){
 	$sql .= " AND artClas = 0"; //Solo puede ver tipo 0 - Publico
+	echo 'Aquí no hay nada que ver';
 }else{
 	if (!$isLector && !$isAdmin){
 		$sql .= " AND artClas in (0, 1)"; //No es lector ni admin, sólo es escritor => solo pued ever tipos 0 y 1
@@ -31,30 +32,6 @@ mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 
 /****************************/
 
-echo "
-		<section class='contenido'>
-    <div class='container'>
-      <div class='page-header'>
-        <h3>Artículo</h3>";
-
-if ($isAdmin || $isEscritor){
-	echo "	 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>";
-	
-}
-echo "
-      </div>
-		
-		  
-
-<table class='table'>
-	<thead>
-		<tr>
-			<th class='col-md-1'>Fecha</th>
-			<th class='col-md-9'>Artículo</th>
-			<th class='col-md-2'></th>
-		</tr>
-	</thead>
-	<tbody>";
 while($fila = mysqli_fetch_array($resultado)){
 	$artID = $fila['artID'];
 	$artDatCre = $fila['artDatCre'];
@@ -65,35 +42,31 @@ while($fila = mysqli_fetch_array($resultado)){
 	$artClas = $fila['artClas'];
 	$usuNom = $fila['usuNom'];
 	
-	if($artLayout != 1){
-		$iconClip = "<i class='fa fa-paperclip'></i>";
-	}
-	
-	else{
-		$iconClip = "";
-	}
-	
-	if(strlen($fila['artTxt']) > 250){
-		$artTxt = substr($fila['artTxt'], 0,250)." (...)";
-	}
-	
-	
-	
-	echo "<tr>
-			<td>$artDatCre</td>
-			<td><h4>$artTit <span class='alias'>[$usuNom]</span>$iconClip</h4>$artTxt</td>";
+	echo "
+		<section class='contenido'>
+    		<div class='container'>
+      			<div class='page-header'>
+        			<h3 class='titulo-ampliado'>$artTit</h3>
+     			</div>
+     			<div class='detalles'>
+     			Escrito por <span class='alias'>[$usuNom]</span> el $artDatCre
+     			</div>
+     			<div>$artTxt<div>
+
+	";
 	
 	if ($isAdmin || $isEscritor){
-		echo "<td><a href='modulos/articulo/edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
-		<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>";
+		echo "<div class='botones-articulo-ampliado'>
+				<a href='edicion.php?id=$artID' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-edit'></span> Editar</a>
+		<a href='../../index.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-triangle-left'></span> Volver</a>
+		</div>
+		";
 	
 	}
-	
-	echo "</tr>";
+
 
 }
-echo "			</tbody>
-			</table>
+echo "			
 		</div>
     </section>";
 
