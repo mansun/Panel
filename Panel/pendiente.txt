@@ -29,3 +29,5 @@ Eliminar variables innecesarias
 Mostrar quien está logueado en la parte de arriba
 
 Maquetación responsive
+
+No funcionan los saltos de línea en los artículos
