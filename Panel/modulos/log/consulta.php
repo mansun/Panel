@@ -5,7 +5,7 @@ if(!$isAdmin){
  header('Location: ../../index.php');
  };
 
-$sql = "SELECT logID, logDatEve, UsuID, logAction, logObserv FROM log";
+$sql = "SELECT logID, logDatEve, UsuID, logAction, logObserv FROM log ORDER BY logDatEve DESC";
 
 
 $resultado = mysqli_query($con,$sql) or

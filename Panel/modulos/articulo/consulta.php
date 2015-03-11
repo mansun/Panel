@@ -1,7 +1,7 @@
 <?php
 
 
-$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID";
+$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID ORDER BY artDatCre DESC";
 if($isAnonimo){
 	$sql .= " WHERE artClas = 0"; //Solo puede ver tipo 0 - Publico
 	

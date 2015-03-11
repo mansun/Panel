@@ -12,10 +12,6 @@ Poder subir imagen (.png y .jpg) y guardar la ruta
 
 Incluir imagen segun Layout
 
-Ordenar artículos por fecha descendente (el más reciente primero).
-
-Ordenar log por fecha descendente
-
 Búsqueda
 
 Cambiar el formato de fecha para español
