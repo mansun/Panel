@@ -46,6 +46,29 @@ while($fila = mysqli_fetch_array($resultado)){
 	$artClas = $fila['artClas'];
 	$usuNom = $fila['usuNom'];
 	
+	$fecha = date("d-m-Y", strtotime($artDatCre));
+	
+	$claseImagen = '';
+	switch ($artLayout) {
+		case 2:
+			//$imagen = "<div class='media'><img src='$artImx' class='pull-left' /><div>";
+			$claseImagen = 'pull-left';
+			break;
+			;
+		case 3:
+			//$imagen = "<div class='media'><img src='$artImx' class='pull-right crop' /><div>";
+			$claseImagen = 'pull-right';
+			break;
+			;
+			break;
+				
+		case 1:
+		default:
+			$claseImagen = 'hidden';
+			;
+			break;
+	}
+	
 	echo "
 		<section class='contenido'>
     		<div class='container'>
@@ -61,7 +84,10 @@ while($fila = mysqli_fetch_array($resultado)){
 	echo "
      			</div>
      			<div class='detalles'>
-     			Escrito por <span class='alias'>[$usuNom]</span> el $artDatCre
+     			Escrito por <span class='alias'>[$usuNom]</span> el $fecha
+     			</div>
+     			<div class='$claseImagen'>
+     				<img src='$artImx' class='media-object' style='height: 140px' />
      			</div>
      			<div>$artTxt<div>
      			<div class='botones-articulo-ampliado'>

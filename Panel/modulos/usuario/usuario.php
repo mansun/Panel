@@ -16,7 +16,7 @@ echo "<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
         <h3>Consulta de Usuario</h3>
-		<a href='edicion.php?id=$id' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>";
+		<a href='edicion.php?id=$id' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-edit'></span> Editar</a>";
 		
 echo "
       </div>

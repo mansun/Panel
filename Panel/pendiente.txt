@@ -1,5 +1,7 @@
-Poder subir imagen (.png y .jpg) y guardar la ruta (dificil)
-Incluir imagen segun Layout (dificil)
++Poder subir imagen (.png y .jpg) y guardar la ruta (dificil)
++Incluir imagen segun Layout (dificil)
+
+Búsqueda (hay mucha documentacion sobre ello)
 
 Registrar acciones de log (fácil)
 Mostrar el usuario en el Log (facil)
@@ -15,7 +17,6 @@ Eliminar variables innecesarias (facil)
 
 Maquetación responsive (facil)
 
-Búsqueda (hay mucha documentacion sobre ello)
 
 Comprobaciones:
 Permisos y roles	

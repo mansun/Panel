@@ -3,6 +3,11 @@ include 'lib/utils.php';
 include 'lib/conexion.php';
 include 'lib/autenticacion.php';
 setlocale(LC_ALL,"es_ES");
+
+$textoBusqueda = '';
+if (isset($_GET['textoBusqueda'])){
+	$textoBusqueda = $_GET['textoBusqueda'];
+};
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -59,8 +64,8 @@ setlocale(LC_ALL,"es_ES");
             ?>
             
           </ul>
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Buscar...">
+          <form class="navbar-form navbar-right" action="/Panel/index.php" method="get">
+            <input type="text" class="form-control" id="textoBusqueda" name="textoBusqueda" placeholder="Buscar..." value="<?php echo $textoBusqueda?>">
           </form>
           <?php
           if (!$isAnonimo) {

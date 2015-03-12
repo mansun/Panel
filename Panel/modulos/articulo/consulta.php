@@ -10,7 +10,7 @@ if (isset($_GET['ampliada'])){
 	$isVistaAmpliada = $_GET['ampliada'] == "true";
 };
 
-$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID WHERE artTxt like '%$textoBusqueda%'";
+$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID WHERE (artTxt like '%$textoBusqueda%' OR  artTit like '%$textoBusqueda%')";
 if($isAnonimo){
 	$sql .= " AND artClas = 0"; //Solo puede ver tipo 0 - Publico
 	
@@ -40,7 +40,7 @@ echo "
     <div class='container'>
       <div class='page-header'>
         <h3>Listado de Artículos</h3>
-		<a href='index.php' class='btn btn-default btn-sm pull-right'><span class='glyphicon glyphicon-zoom-in'></span> Vista Normal</a>";
+		<a href='index.php' class='btn btn-default btn-sm pull-right'><span class='glyphicon glyphicon-zoom-out'></span> Vista Normal</a>";
 	
 }
 if ($isAdmin || $isEscritor){
@@ -143,19 +143,23 @@ else{
 	
 		$fecha = date("d-m-Y", strtotime($artDatCre));
 	
-		$imagen = '';
+		$claseImagen = '';
 		switch ($artLayout) {
 			case 2:
-				$imagen = "<img src='$artImx' class='pull-left thumb' />";
+				//$imagen = "<div class='media'><img src='$artImx' class='pull-left' /><div>";
+				$claseImagen = 'pull-left';
 				break;
 			;
 			case 3:
-				$imagen = "<img src='$artImx' class='pull-right thumb' />";
+				//$imagen = "<div class='media'><img src='$artImx' class='pull-right crop' /><div>";
+				$claseImagen = 'pull-right';
 				break;
 			;
 			break;
 			
+			case 1:
 			default:
+				$claseImagen = 'hidden';
 				;
 			break;
 		}
@@ -165,14 +169,29 @@ else{
 		}
 	
 	
+		$plantillaMedia =
+		 "	<div class='media'>
+        <a class='$claseImagen'>
+            <img src='$artImx' class='media-object' style='height: 140px' />
+        </a>
+        <div class='media-body'>
+            <h4 class='media-heading'><a href='modulos/articulo/articulo.php?id=$artID' class='titulo'>$artTit</a></h4>$artTxt
+            <p class='alias'>[$usuNom]</p>
+        </div>
+    </div>";
 	
+		/*
+		 * $imagen
+		
+		
+		<br /><span class='alias'>[$usuNom]</span>
+		
+		 */
+		
 		echo "<tr>
 		<td>$fecha</td>
 		<td class='noticia'>
-		
-		$imagen
-		<a href='modulos/articulo/articulo.php?id=$artID' class='titulo'>$artTit</a>$artTxt<br /><span class='alias'>[$usuNom]</span>
-		
+		$plantillaMedia
 		</td>
 		<td class='edicion'>";
 	
