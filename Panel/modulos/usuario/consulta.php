@@ -47,7 +47,7 @@ while($fila = mysqli_fetch_array($resultado)){
 
 	
 	echo "<tr>
-			<td>$usuNom</td>
+			<td><a href='usuario.php?id=$usuID'>$usuNom</a></td>
 			<td>$usuAlias</td>
 			<td>$usuSit</td>
 			<td><a href='edicion.php?id=$usuID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>

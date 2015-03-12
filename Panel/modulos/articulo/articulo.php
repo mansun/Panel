@@ -18,8 +18,9 @@ die('Error consulta de artículos: '. mysqli_error($con));
 
 /******* log del sistema ***/
 
-$accion = 'Consultó 1 artículo';
-$observaciones = 'No hay observaciones';
+if (!$isAnonimo) {
+$accion = 'Consultar artículo';
+$observaciones = 'Consultó un artículo: ' . $_SESSION["usuNom"];
 $fechaActual = date('Y-m-d H:i:s');
 
 if (isset($usuarioID)){
@@ -28,6 +29,7 @@ if (isset($usuarioID)){
 	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', NULL, '$accion','$observaciones')";
 }
 mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
+}
 
 /****************************/
 
@@ -48,27 +50,30 @@ while($fila = mysqli_fetch_array($resultado)){
 		<section class='contenido'>
     		<div class='container'>
       			<div class='page-header'>
-        			<h3 class='titulo-ampliado'>$artTit</h3>
+        			<h3 class='titulo-ampliado'>$artTit</h3>";
+        			if ($isAdmin || $isEscritor){
+		echo "
+				<a href='edicion.php?id=$artID' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-edit'></span> Editar</a>
+		
+		";
+	
+	}
+	echo "
      			</div>
      			<div class='detalles'>
      			Escrito por <span class='alias'>[$usuNom]</span> el $artDatCre
      			</div>
      			<div>$artTxt<div>
+     			<div class='botones-articulo-ampliado'>
 
 	";
 	
-	if ($isAdmin || $isEscritor){
-		echo "<div class='botones-articulo-ampliado'>
-				<a href='edicion.php?id=$artID' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-edit'></span> Editar</a>
-		<a href='../../index.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-triangle-left'></span> Volver</a>
-		</div>
-		";
 	
-	}
 
 
 }
-echo "			
+echo "		<a href='../../index.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-triangle-left'></span> Volver</a>
+		</div>	
 		</div>
     </section>";
 

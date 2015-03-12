@@ -61,9 +61,14 @@ setlocale(LC_ALL,"es_ES");
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Buscar...">
           </form>
+          <?php
+          if (!$isAnonimo) {
+          	echo '
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Contacto</a></li>
-          </ul>
+            <li class="nombre-usuario">'.$_SESSION["usuNom"].'</li>
+          </ul> ';
+          }
+          ?>
         </div>
       </div>
     </nav>

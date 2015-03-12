@@ -30,6 +30,21 @@ if(isset($_POST['enviar'])) {
 			$_SESSION["isAdmin"] = in_array(1, $roles);
 			$_SESSION["isLector"] =  in_array(2, $roles); 
 			$_SESSION["isEscritor"] =  in_array(3, $roles);
+			
+			/******* log del sistema ***/
+			
+			$accion = 'Login';
+			$observaciones = 'Usuario logueado: ' . $_SESSION["usuNom"];
+			$fechaActual = date('Y-m-d H:i:s');
+			
+			if (isset($usuarioID)){
+				$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
+			}else{
+				$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', NULL, '$accion','$observaciones')";
+			}
+			mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
+			
+			/****************************/
 
 			header('location: index.php'); 
 			

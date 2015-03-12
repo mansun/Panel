@@ -37,7 +37,7 @@ while($fila = mysqli_fetch_array($resultado)){
 	$rolNom = $fila['rolNom'];
 	$tipoRolNom = $fila['tipoRolNom'];
 	echo "<tr>
-			<td>$rolNom</td>
+			<td><a href='rol.php?id=$rolID'>$rolNom</a></td>
 			<td>$tipoRolNom</td>
 			<td><a href='edicion.php?id=$rolID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
 			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>

@@ -1,13 +1,16 @@
 <?php
+$textoBusqueda = '';
+if (isset($_GET['textoBusqueda'])){
+	$textoBusqueda = $_GET['textoBusqueda'];
+};
 
-
-$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID ";
+$sql = "SELECT artID, artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuNom FROM articulo inner join usuario on articulo.usuID = usuario.usuID WHERE artTxt like '%$textoBusqueda%'";
 if($isAnonimo){
-	$sql .= " WHERE artClas = 0"; //Solo puede ver tipo 0 - Publico
+	$sql .= " AND artClas = 0"; //Solo puede ver tipo 0 - Publico
 	
 }else{
 	if (!$isLector && !$isAdmin){
-	$sql .= " WHERE artClas in (0, 1)"; //No es lector ni admin, sólo es escritor => solo pued ever tipos 0 y 1
+	$sql .= " AND artClas in (0, 1)"; //No es lector ni admin, sólo es escritor => solo pued ever tipos 0 y 1
 	}
 }
 
@@ -20,7 +23,8 @@ echo "
 		<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
-        <h3>Listado de Artículos</h3>";
+        <h3>Listado de Artículos</h3>
+		<a href='modulos/articulo/vista-ampliada.php' class='btn btn-default btn-sm pull-right'><span class='glyphicon glyphicon-zoom-in'></span> Vista Ampliada</a>";
 
 if ($isAdmin || $isEscritor){
 	echo "	 <a href='modulos/articulo/nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>";

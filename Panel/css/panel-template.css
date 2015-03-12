@@ -184,5 +184,15 @@ section.contenido {
 	margin-top: 10px;
 }
 
+.nombre-usuario{
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-right: 25px;
+}
+
+.form-inline .form-group {
+	margin-right: 15px;
+}
+
 
 

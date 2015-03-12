@@ -1,18 +1,22 @@
 Poder subir imagen (.png y .jpg) y guardar la ruta (dificil)
 Incluir imagen segun Layout (dificil)
 Mostrar mensajes cuando se realiza alguna acción (nuevo y edición) (dificil)
+Mostrar tipos de roles posibles al crear usuario (dificil)
 
 Registrar acciones de log (fácil)
 Cambiar el formato de fecha para español (facil)
-Mostrar quien está logueado en la parte de arriba (facil)
 Mostrar el usuario en el Log (facil)
+
+
+Consulta de usuario (facil)
+Consulta de rol (facil)
 
 Validar los formularios (no introducir caracteres extraños, campos vacíos) (facil)
 Eliminar variables innecesarias (facil)
 
 Maquetación responsive (facil)
 
-Búsqueda (dificil, pero hay mucha documentacion sobre ello)
+Búsqueda (hay mucha documentacion sobre ello)
 
 Comprobaciones:
 Permisos y roles	

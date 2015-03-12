@@ -17,6 +17,14 @@ if(isset($_POST['guardar'])) {
 	
 	mysqli_query($con,$sqlUpdate) or
 	die('Error: '. mysqli_error($con));	
+	
+	/******* log del sistema ***/
+	$accion = 'Crear Artículo';
+	$observaciones = 'Creó el artículo: '.$artTitGuardado .' por usuario: '. $_SESSION["usuNom"];
+	$fechaActual = date('Y-m-d H:i:s');
+	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
+	mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
+	/****************************/
 
 	header('location: consulta.php');
 }

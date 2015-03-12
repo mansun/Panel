@@ -20,7 +20,7 @@ if(isset($_POST['guardar'])) {
 
 	/******* log del sistema ***/
 	$accion = 'Crear rol';
-	$observaciones = 'No hay observaciones';
+	$observaciones = 'Creó el rol: '.$rolNomGuardado .' el administrador: '. $_SESSION["usuNom"];
 	$fechaActual = date('Y-m-d H:i:s');
 	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
 	mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
@@ -35,7 +35,7 @@ if(isset($_POST['guardar'])) {
       <div class='page-header'>
         <h3>Nuevo rol</h3>
       </div>
-      <form class="form-inline" method="post">
+      <form class="form" method="post">
   <div class="form-group">
     <label for="rolNom">Nombre</label>
     <input type="text" class="form-control" name="rolNom" id="rolNom" value="">
