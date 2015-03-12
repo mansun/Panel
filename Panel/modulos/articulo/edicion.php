@@ -124,7 +124,8 @@ if(isset($_POST['guardar'])) {
         <option value="2" <?php echo $artClas == 2?"selected":"" ?>>Lector</option>
       </select>    
   </div>
-  <button type="submit" name="guardar" value="guardar" class="btn btn-default">Guardar</button>
+  <button type="submit" name="guardar" value="guardar" class="btn btn-default btn-sm"><span class='glyphicon glyphicon-floppy-disk'></span> Guardar</button>
+  <a href="../../index.php" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-triangle-left"></span> Volver</a>
   </form>
      </div>
 </section>

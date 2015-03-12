@@ -26,7 +26,7 @@ echo "
 			<th class='col-md-4'>Nombre</th>
 			<th class='col-md-3'>Alias</th>
 			<th class='col-md-3'>Situación</th>
-			<th class='col-md-2'></th>
+			<th class='col-md-2'>Roles</th>
 		</tr>
 	</thead>
 	<tbody>";
@@ -49,11 +49,13 @@ while($fila = mysqli_fetch_array($resultado)){
 			<td>$usuNom</td>
 			<td>$usuAlias</td>
 			<td>$usuSit</td>
-			<td>Faltan los roles aquí</td>
+	
+			<td>Mostrar los roles aquí</td>
 		</tr>";
 }
 echo "			</tbody>
 			</table>
+			<a href='consulta.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-triangle-left'></span> Volver</a>
 		</div>
     </section>";
 

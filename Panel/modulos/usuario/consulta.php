@@ -16,7 +16,7 @@ echo "<section class='contenido'>
         <h3>Listado de Usuarios</h3>";
 		
 if ($isAdmin || $isEscritor){
-	echo "	 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>";
+	echo "	 <a href='nuevo.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-file'></span> Nuevo</a>";
 
 }
 echo "
@@ -24,10 +24,10 @@ echo "
 <table class='table'>
 	<thead>
 		<tr>
-			<th class='col-md-4'>Nombre</th>
+			<th class='col-md-5'>Nombre</th>
 			<th class='col-md-3'>Alias</th>
 			<th class='col-md-3'>Situación</th>
-			<th class='col-md-2'></th>
+			<th class='col-md-1'></th>
 		</tr>
 	</thead>
 	<tbody>";
@@ -50,12 +50,12 @@ while($fila = mysqli_fetch_array($resultado)){
 			<td><a href='usuario.php?id=$usuID'>$usuNom</a></td>
 			<td>$usuAlias</td>
 			<td>$usuSit</td>
-			<td><a href='edicion.php?id=$usuID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
-			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
+			<td><a href='edicion.php?id=$usuID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a></td>
 		</tr>";
 }
 echo "			</tbody>
 			</table>
+		<a href='../../index.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-triangle-left'></span> Inicio</a>
 		</div>
     </section>";
 

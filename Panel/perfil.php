@@ -28,7 +28,8 @@ if(isset($_POST['guardar'])) {
 	
 	mysqli_query($con,$sqlUpdate) or
 		die('Error: '. mysqli_error($con));	
-
+	
+	/* Esto por si queremos enseñar los roles en el perfil del usuario
 	//Guardamos los roles
 	//1. Borramos las relaciones antiguas
 	mysqli_query($con, "DELETE FROM usuario_rol WHERE usuID=$id") or
@@ -40,7 +41,7 @@ if(isset($_POST['guardar'])) {
 			mysqli_query($con, "INSERT INTO usuario_rol (usuID, rolID) VALUES ($id, $rolID)") or
 				die('Error: '. mysqli_error($con));
 		}
-	}
+	} */
 	
 	header('location: index.php');
 }
@@ -71,8 +72,8 @@ if(isset($_POST['guardar'])) {
         <option value="1" <?php echo $usuSit == 1?"selected":"" ?>>Activo</option>
       </select>
   </div>
-  
-
+ 
+<!-- Esto por si queremos enseñar los roles en el perfil del usuario 
   <?php
 
   //Obtenemos todos los roles de la tabla "ROL"
@@ -103,7 +104,7 @@ if(isset($_POST['guardar'])) {
 		
 		
    	
-	?>
+	?> -->
 	
 
   

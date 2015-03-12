@@ -20,15 +20,15 @@ mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 echo "<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
-        <h3>Roles</h3>
-		 <a href='nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>
+        <h3>Listado de Roles</h3>
+		 <a href='nuevo.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-file'></span> Nuevo</a>
       </div>
 <table class='table'>
 	<thead>
 		<tr>
-			<th class='col-md-5'>Nombre</th>
+			<th class='col-md-6'>Nombre</th>
 			<th class='col-md-5'>Tipo</th>
-			<th class='col-md-2'></th>
+			<th class='col-md-1'></th>
 		</tr>
 	</thead>
 					<tbody>";
@@ -39,12 +39,12 @@ while($fila = mysqli_fetch_array($resultado)){
 	echo "<tr>
 			<td><a href='rol.php?id=$rolID'>$rolNom</a></td>
 			<td>$tipoRolNom</td>
-			<td><a href='edicion.php?id=$rolID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
-			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
+			<td><a href='edicion.php?id=$rolID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a></td>
 		</tr>";
 }
 echo "			</tbody>
 		</table>
+		<a href='../../index.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-triangle-left'></span> Inicio</a>
 		</div>
     </section>";
 

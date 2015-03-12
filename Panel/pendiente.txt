@@ -1,23 +1,14 @@
-+Poder subir imagen (.png y .jpg) y guardar la ruta (dificil)
-+Incluir imagen segun Layout (dificil)
-
-Búsqueda (hay mucha documentacion sobre ello)
-
+Tareas:
 Registrar acciones de log (fácil)
 Mostrar el usuario en el Log (facil)
-
 Mensajes en el resto(fácil)
-
-
-Consulta de usuario (facil)
-Consulta de rol (facil)
-
 Validar los formularios (no introducir caracteres extraños, campos vacíos) (facil)
-Eliminar variables innecesarias (facil)
-
 Maquetación responsive (facil)
 
 
-Comprobaciones:
-Permisos y roles	
-Altas y modificaciones
+Errores:
+Me logueo, edito mi usuario, no cambiar el usuario arriba
+Edito algo, muestra el mensaje de "se ha editado correctamente" pero en la pantalla se queda lo antiguo
+En consulta de usuario faltan los roles
+Falla la imagen si la intentas editar
+Falla la imagen si intentas editar el articulo (cualquier campo)

@@ -23,14 +23,13 @@ echo "<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
         <h3>Roles</h3>
-		 <a href='edicion.php?id=$id' class='btn btn-default btn-sm'>Editar</a>
+		 <a href='edicion.php?id=$id' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-edit'></span> Editar</a>
       </div>
 <table class='table'>
 	<thead>
 		<tr>
-			<th class='col-md-5'>Nombre</th>
+			<th class='col-md-6'>Nombre</th>
 			<th class='col-md-5'>Tipo</th>
-			<th class='col-md-2'></th>
 		</tr>
 	</thead>
 					<tbody>";
@@ -39,14 +38,13 @@ while($fila = mysqli_fetch_array($resultado)){
 	$rolNom = $fila['rolNom'];
 	$tipoRolNom = $fila['tipoRolNom'];
 	echo "<tr>
-			<td><a href='rol.php?id=$rolID'>$rolNom</a></td>
+			<td>$rolNom</a></td>
 			<td>$tipoRolNom</td>
-			<td><a href='edicion.php?id=$rolID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
-			<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a></td>
 		</tr>";
 }
 echo "			</tbody>
 		</table>
+		<a href='consulta.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-triangle-left'></span> Volver</a>
 		</div>
     </section>";
 

@@ -77,7 +77,7 @@ if(isset($_POST['guardar'])) {
   <div class="form-group">
     <label for="exampleInputFile">Imagen</label>
     <input type="file" id="artImx" name="artImx" accept="image/*">
-    //<input type="text" name="artImxText" value=""/>
+    <!-- <input type="text" name="artImxText" value=""/> -->
     <p class="help-block">Formatos admitidos: JPG y PNG. Tamaño máximo de archivo: 2MB</p>
   </div>
   <div class="form-group">
@@ -96,7 +96,8 @@ if(isset($_POST['guardar'])) {
         <option value="2">Lector</option>
       </select>    
   </div>
-  <button type="submit" name="guardar" value="guardar" class="btn btn-default">Guardar</button>
+  <button type="submit" name="guardar" value="guardar" class="btn btn-default btn-sm"><span class='glyphicon glyphicon-floppy-disk'></span> Guardar</button>
+  <a href="../../index.php" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-triangle-left"></span> Volver</a>
   </form>
 
      </div>

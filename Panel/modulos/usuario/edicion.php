@@ -1,9 +1,10 @@
 <?php
 include '../../header.php';
 
-if(!$isAdmin){
-	header('Location: ../../index.php');
-} 
+/* if(!$isAdmin){
+ header('Location: ../../index.php');
+ } 
+ */
 
 if (isset($_GET['nuevo']) && ($_GET['nuevo'] == "true")){
 	echo '<div class="alert alert-success">
@@ -40,7 +41,7 @@ if(isset($_POST['guardar'])) {
 	$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado', usuSit = '$usuSitGuardado' WHERE usuID = '$id'";
 	
 	/********************************************************/
-	/* Tienes que elegir una de estas dos opciones */
+	/* Elegir una de estas dos opciones */
 	/* 1. Opción de mostrar error a pelo */
 	mysqli_query($con,$sqlUpdate) or die('Error: '. mysqli_error($con));
 
@@ -153,7 +154,8 @@ if(isset($_POST['guardar'])) {
 	
 
   
-  <button type="submit" name="guardar" value="guardar" class="btn btn-default">Guardar</button>
+  <button type="submit" name="guardar" value="guardar" class="btn btn-default btn-sm"><span class='glyphicon glyphicon-floppy-disk'></span> Guardar</button>
+  <a href='consulta.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-triangle-left'></span> Volver</a>
   </form>
 
      </div>

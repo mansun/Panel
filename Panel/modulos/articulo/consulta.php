@@ -44,7 +44,7 @@ echo "
 	
 }
 if ($isAdmin || $isEscritor){
-	echo "	 <a href='modulos/articulo/nuevo.php' class='btn btn-default btn-sm'>Nuevo</a>";
+	echo "	 <a href='modulos/articulo/nuevo.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-file'></span> Nuevo</a>";
 	
 }
 echo "
@@ -60,8 +60,8 @@ if (!$isVistaAmpliada){
 		<tr>
 			<th class='col-md-1'>Fecha</th>
 			<th class='col-md-1 clip'><i class='fa fa-paperclip'></i></th>
-			<th class='col-md-8'>Artículo</th>
-			<th class='col-md-2'></th>
+			<th class='col-md-9'>Artículo</th>
+			<th class='col-md-1'></th>
 		</tr>
 	</thead>
 	<tbody>";
@@ -98,8 +98,7 @@ if (!$isVistaAmpliada){
 		<td class='edicion'>";
 	
 		if ($isAdmin || $isEscritor){
-		echo "<a href='modulos/articulo/edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
-		<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a>";
+		echo "<a href='modulos/articulo/edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>";
 	
 		}
 	
@@ -121,8 +120,8 @@ else{
 	<thead>
 		<tr>
 			<th class='col-md-1'>Fecha</th>
-			<th class='col-md-9'>Artículo</th>
-			<th class='col-md-2'></th>
+			<th class='col-md-10'>Artículo</th>
+			<th class='col-md-1'></th>
 		</tr>
 	</thead>
 	<tbody>";
@@ -196,8 +195,7 @@ else{
 		<td class='edicion'>";
 	
 		if ($isAdmin || $isEscritor){
-		echo "<a href='modulos/articulo/edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>
-		<a href='' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-remove'></span> Eliminar</a>";
+		echo "<a href='modulos/articulo/edicion.php?id=$artID' class='btn btn-default btn-xs'><span class='glyphicon glyphicon-edit'></span> Editar</a>";
 	
 		}
 	

@@ -46,6 +46,7 @@ while($fila = mysqli_fetch_array($resultado)){
 }
 echo "			</tbody>
 		</table>
+		<a href='../../index.php' class='btn btn-default btn-sm'><span class='glyphicon glyphicon-triangle-left'></span> Inicio</a>
 		</div>
     </section>";
 
