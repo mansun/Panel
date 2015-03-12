@@ -1,4 +1,5 @@
 <?php 
+include 'lib/utils.php';
 include 'lib/conexion.php';
 include 'lib/autenticacion.php';
 setlocale(LC_ALL,"es_ES");

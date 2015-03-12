@@ -6,10 +6,36 @@ if(!$isAdmin && !$isEscritor){
 }
 
 if(isset($_POST['guardar'])) {	
+	
+	/**** codigo para subir archivos ***/
+	//Luego habría que moverloa un archivo aparte: upload_file.php o algo así
+	$uniqueId = GUID();
+	$target_dir = "../../imagenes_articulos/" ;
+	$target_file = $target_dir . basename($uniqueId.'-'.$_FILES["artImx"]["name"]);
+	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+	// Check if image file is a actual image or fake image
+	$check = getimagesize($_FILES["artImx"]["tmp_name"]);
+	if($check !== false) {
+		echo "File is an image - " . $check["mime"] . ".";
+		$uploadOk = 1;
+
+		if (move_uploaded_file($_FILES["artImx"]["tmp_name"], $target_file)) {
+			echo "The file ". basename( $_FILES["artImx"]["name"]). " has been uploaded.";
+		} else {
+			echo "Sorry, there was an error uploading your file.";
+		}
+		//TODO: A cambiar para una forma mas elegante...
+		$target_file = str_replace("../..", "/panel", $target_file); //caaague xD
+		
+	} else {
+		$target_file = '';
+	}
+	/*************************************************/
+	
 	$artDatCreGuardado = $_POST['artDatCre'];
 	$artTitGuardado = $_POST['artTit'];
 	$artTxtGuardado = $_POST['artTxt'];
-	$artImxGuardado = $_POST['artImx'];
+	$artImxGuardado = $target_file; //$_POST['artImx'];
 	$artLayoutGuardado = $_POST['artLayout'];
 	$artClasGuardado = $_POST['artClas'];
 	
@@ -26,7 +52,7 @@ if(isset($_POST['guardar'])) {
 	mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 	/****************************/
 
-	header('location: consulta.php');
+	//header('location: ../../index.php');
 }
 
 ?>
@@ -35,10 +61,10 @@ if(isset($_POST['guardar'])) {
       <div class='page-header'>
         <h3>Nuevo artículo</h3>
       </div>
-      <form method="post">
+      <form method="post" enctype="multipart/form-data">
   <div class="form-group">
     <label for="artDatCre">Fecha</label>
-    <input type="text" class="form-control" name="artDatCre" id="artDatCre" value="">
+    <input type="date" class="form-control" name="artDatCre" id="artDatCre" value="">
   </div>
   <div class="form-group">
     <label for="artTit">Título</label>
@@ -50,8 +76,8 @@ if(isset($_POST['guardar'])) {
   </div>
   <div class="form-group">
     <label for="exampleInputFile">Imagen</label>
-    <input type="file" id="exampleInputFile">
-    //<input type="text" name="artImx" value=""/>
+    <input type="file" id="artImx" name="artImx" accept="image/*">
+    //<input type="text" name="artImxText" value=""/>
     <p class="help-block">Formatos admitidos: JPG y PNG. Tamaño máximo de archivo: 2MB</p>
   </div>
   <div class="form-group">

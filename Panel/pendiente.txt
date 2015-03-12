@@ -1,11 +1,10 @@
 Poder subir imagen (.png y .jpg) y guardar la ruta (dificil)
 Incluir imagen segun Layout (dificil)
-Mostrar mensajes cuando se realiza alguna acción (nuevo y edición) (dificil)
-Mostrar tipos de roles posibles al crear usuario (dificil)
 
 Registrar acciones de log (fácil)
-Cambiar el formato de fecha para español (facil)
 Mostrar el usuario en el Log (facil)
+
+Mensajes en el resto(fácil)
 
 
 Consulta de usuario (facil)

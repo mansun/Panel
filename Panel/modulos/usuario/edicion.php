@@ -5,6 +5,15 @@ if(!$isAdmin){
 	header('Location: ../../index.php');
 } 
 
+if (isset($_GET['nuevo']) && ($_GET['nuevo'] == "true")){
+	echo '<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+			Se ha creado con exito</div>';
+}
+
+
 $id =$_GET['id'];
 
 $sql = "SELECT * FROM usuario WHERE usuID  = '$id'";
@@ -30,9 +39,22 @@ if(isset($_POST['guardar'])) {
 	
 	$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado', usuSit = '$usuSitGuardado' WHERE usuID = '$id'";
 	
-	mysqli_query($con,$sqlUpdate) or
-		die('Error: '. mysqli_error($con));	
+	/********************************************************/
+	/* Tienes que elegir una de estas dos opciones */
+	/* 1. Opción de mostrar error a pelo */
+	mysqli_query($con,$sqlUpdate) or die('Error: '. mysqli_error($con));
 
+	/* 2. Opción de mensaje de error */
+	if (!mysqli_query($con,$sqlUpdate)){
+		echo '<div class="alert alert-error">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+			Error guardando: '.mysqli_error($con).'</div>';
+		die();
+	}
+	/********************************************************/
+	
 	//Guardamos los roles
 	//1. Borramos las relaciones antiguas
 	mysqli_query($con, "DELETE FROM usuario_rol WHERE usuID=$id") or
@@ -60,8 +82,13 @@ if(isset($_POST['guardar'])) {
 	mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 	
 	/****************************/
+	echo '<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
+			Se ha editado con exito</div>';
 	
-	header('location: consulta.php');
+	//header('location: consulta.php?op=edit&res=true');
 }
 
 ?>

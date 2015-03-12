@@ -16,6 +16,23 @@ if(isset($_POST['guardar'])) {
 	
 	mysqli_query($con,$sqlInsert) or
 	die('Error: '. mysqli_error($con));
+
+	//Obtenemos Id de usuario recien creado
+	$id = $con->insert_id;
+	//---------------------------------------
+	
+	//Guardamos los roles
+	//1. Borramos las relaciones antiguas
+	mysqli_query($con, "DELETE FROM usuario_rol WHERE usuID=$id") or
+	die('Error: '. mysqli_error($con));
+	
+	//2. Insertamos las relaciones nuevas
+	if(!empty($_POST['roles'])) {
+		foreach($_POST['roles'] as $rolID) {
+			mysqli_query($con, "INSERT INTO usuario_rol (usuID, rolID) VALUES ($id, $rolID)") or
+			die('Error: '. mysqli_error($con));
+		}
+	}
 	
 	/******* log del sistema ***/
 	
@@ -32,7 +49,7 @@ if(isset($_POST['guardar'])) {
 	
 	/****************************/
 	
-	header('location: consulta.php');
+	header("location: edicion.php?id=$id&nuevo=true");
 }
 
 ?>
@@ -61,6 +78,27 @@ if(isset($_POST['guardar'])) {
         <option value="1">Activo</option>
       </select>
   </div>
+  
+  
+
+  <?php
+
+  //Obtenemos todos los roles de la tabla "ROL"
+  $sqlRoles = "SELECT * FROM rol";
+	$resultadoRoles = mysqli_query($con,$sqlRoles);
+  
+  		$isChecked ="";
+		while($fila = mysqli_fetch_array($resultadoRoles)){
+   			$rol_rolID = $fila['rolID'];
+   			$rol_rolNom = $fila['rolNom'];	
+   			echo "<div class='checkbox'>
+   				  	<label>
+   				  		<input type='checkbox' id='roles[]' name='roles[]' value='$rol_rolID' >$rol_rolNom </label>
+   				  </div>";
+		}
+	?>
+	
+  
   <button type="submit" name="guardar" value="guardar" class="btn btn-default">Guardar</button>
   </form>
 

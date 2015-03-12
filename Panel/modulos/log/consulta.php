@@ -5,6 +5,8 @@ if(!$isAdmin){
  header('Location: ../../index.php');
  };
 
+//setlocale(LC_TIME,"es_ES");
+ 
 $sql = "SELECT logID, logDatEve, UsuID, logAction, logObserv FROM log ORDER BY logDatEve DESC";
 
 
@@ -29,11 +31,14 @@ echo "<section class='contenido'>
 while($fila = mysqli_fetch_array($resultado)){
 	$logID = $fila['logID'];
 	$logDatEve = $fila['logDatEve'];
+	
+	$fecha = date("d-m-Y h:m:s", strtotime($logDatEve));
+	
 	$UsuID = $fila['UsuID'];
 	$logAction = $fila['logAction'];
 	$logObserv = $fila['logObserv'];
 	echo "<tr>
-			<td>$logDatEve</td>
+			<td>$fecha</td>
 			<td>$UsuID</td>
 			<td>$logAction</td>
 			<td>$logObserv</td>
