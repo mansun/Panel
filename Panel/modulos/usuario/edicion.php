@@ -41,11 +41,7 @@ if(isset($_POST['guardar'])) {
 	$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado', usuSit = '$usuSitGuardado' WHERE usuID = '$id'";
 	
 	/********************************************************/
-	/* Elegir una de estas dos opciones */
-	/* 1. Opción de mostrar error a pelo */
-	mysqli_query($con,$sqlUpdate) or die('Error: '. mysqli_error($con));
-
-	/* 2. Opción de mensaje de error */
+	/* Opción de mensaje de error */
 	if (!mysqli_query($con,$sqlUpdate)){
 		echo '<div class="alert alert-error">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">

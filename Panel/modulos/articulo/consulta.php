@@ -171,13 +171,15 @@ else{
 		$plantillaMedia =
 		 "	<div class='media'>
         <a class='$claseImagen'>
-            <img src='$artImx' class='media-object' style='height: 140px' />
+            <img src='modulos/articulo/$artImx' class='media-object' style='height: 140px' />
         </a>
         <div class='media-body'>
             <h4 class='media-heading'><a href='modulos/articulo/articulo.php?id=$artID' class='titulo'>$artTit</a></h4>$artTxt
             <p class='alias'>[$usuNom]</p>
         </div>
     </div>";
+		
+
 	
 		/*
 		 * $imagen

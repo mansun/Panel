@@ -13,8 +13,8 @@ $resultado = mysqli_query($con,$sql) or
 die('Error consulta de roles : '. mysqli_error($con));
 
 /******* log del sistema ***/
-$accion = 'Consulta de rol';
-$observaciones = 'No hay observaciones';
+$accion = 'Consultar rol';
+$observaciones = 'Consultó un rol: ' . $_SESSION["usuNom"];
 $fechaActual = date('Y-m-d H:i:s');
 $sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
 mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));

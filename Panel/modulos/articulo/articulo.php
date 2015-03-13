@@ -52,12 +52,12 @@ while($fila = mysqli_fetch_array($resultado)){
 	switch ($artLayout) {
 		case 2:
 			//$imagen = "<div class='media'><img src='$artImx' class='pull-left' /><div>";
-			$claseImagen = 'pull-left';
+			$claseImagen = 'pull-left imagen-izquierda';
 			break;
 			;
 		case 3:
 			//$imagen = "<div class='media'><img src='$artImx' class='pull-right crop' /><div>";
-			$claseImagen = 'pull-right';
+			$claseImagen = 'pull-right  imagen-derecha';
 			break;
 			;
 			break;
@@ -87,9 +87,9 @@ while($fila = mysqli_fetch_array($resultado)){
      			Escrito por <span class='alias'>[$usuNom]</span> el $fecha
      			</div>
      			<div class='$claseImagen'>
-     				<img src='$artImx' class='media-object' style='height: 140px' />
+     				<img src='$artImx' class='media-object imagen-grande' />
      			</div>
-     			<div>$artTxt<div>
+     			<div class='texto-articulo-entero'>$artTxt<div>
      			<div class='botones-articulo-ampliado'>
 
 	";

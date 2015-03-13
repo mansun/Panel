@@ -15,13 +15,11 @@ if(!$resultado) {
 	$usuNom = $fila['usuNom'];
 	$usuAlias = $fila['usuAlias'];
 	$usuPw = $fila['usuPw'];
-	$usuSit = $fila['usuSit'];
 
 if(isset($_POST['guardar'])) {	
 	$usuNomGuardado = $_POST['usuNom'];
 	$usuAliasGuardado = $_POST['usuAlias'];
 	$usuPwGuardado = $_POST['usuPw'];
-	$usuSitGuardado = $_POST['usuSit'];
 	
 	
 	$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado', usuSit = '$usuSitGuardado' WHERE usuID = '$id'";
@@ -64,13 +62,6 @@ if(isset($_POST['guardar'])) {
   <div class="form-group">
     <label for="usuPw">Contraseña</label>
     <input type="password" class="form-control" name="usuPw" id="usuPw" value="<?php echo $usuPw ?>">
-  </div>
-  <div class="form-group">
-    <label for="usuSit">Situación</label>
-      <select class="form-control" name="usuSit" id="usuSit">
-        <option value="0" <?php echo $usuSit == 0?"selected":"" ?>>Inactivo</option>
-        <option value="1" <?php echo $usuSit == 1?"selected":"" ?>>Activo</option>
-      </select>
   </div>
  
 <!-- Esto por si queremos enseñar los roles en el perfil del usuario 

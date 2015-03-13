@@ -32,7 +32,7 @@ while($fila = mysqli_fetch_array($resultado)){
 	$logID = $fila['logID'];
 	$logDatEve = $fila['logDatEve'];
 	
-	$fecha = date("d-m-Y h:m:s", strtotime($logDatEve));
+	$fecha = date("d-m-Y H:i:s", strtotime($logDatEve));
 	
 	$UsuID = $fila['UsuID'];
 	$logAction = $fila['logAction'];

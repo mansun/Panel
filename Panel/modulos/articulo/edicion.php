@@ -105,7 +105,7 @@ if(isset($_POST['guardar'])) {
   <div class="form-group">
     <label for="artImx">Imagen</label>
     <input type="file" name="artImx" id="artImx" accept="image/*">
-    <img type="text" name="artImxText" src="<?php echo $artImx ?>"/>
+    <img type="text" class="imagen-edicion" name="artImxText" src="<?php echo $artImx ?>"/>
     <p class="help-block">Formatos admitidos: JPG y PNG. Tamaño máximo de archivo: 2MB</p>
   </div>
   <div class="form-group">

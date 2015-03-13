@@ -1,9 +1,9 @@
 Tareas:
-Registrar acciones de log (fácil)
 Mostrar el usuario en el Log (facil)
 Mensajes en el resto(fácil)
 Validar los formularios (no introducir caracteres extraños, campos vacíos) (facil)
 Maquetación responsive (facil)
+Maquetar bien vista ampliada y fotos (facil)
 
 
 Errores:
@@ -12,3 +12,10 @@ Edito algo, muestra el mensaje de "se ha editado correctamente" pero en la panta
 En consulta de usuario faltan los roles
 Falla la imagen si la intentas editar
 Falla la imagen si intentas editar el articulo (cualquier campo)
+
+Si un usuario está en situación “Inactivo”: Sus roles no aplican, se le permite el acceso al
+sitio, pero con permisos de usuario registrado. Sólo podrá efectuar el loguin y el logout. No
+podrá expandir artículos para su lectura completa.
+
+Un lector no puede ver el boton perfil
+Script de creacion de base de datos

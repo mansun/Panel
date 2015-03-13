@@ -10,6 +10,23 @@ $sql = "SELECT usuID, usuNom, usuAlias, usuSit FROM usuario";
 $resultado = mysqli_query($con,$sql) or
 die('Error consulta de usuarios: '. mysqli_error($con));
 
+/******* log del sistema ***/
+
+if (!$isAnonimo) {
+	$accion = 'Consultar usuario';
+	$observaciones = 'Consultó un usuario: ' . $_SESSION["usuNom"];
+	$fechaActual = date('Y-m-d H:i:s');
+
+	if (isset($usuarioID)){
+		$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
+	}else{
+		$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', NULL, '$accion','$observaciones')";
+	}
+	mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
+}
+
+/****************************/
+
 echo "<section class='contenido'>
     <div class='container'>
       <div class='page-header'>
