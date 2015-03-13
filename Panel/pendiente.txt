@@ -2,15 +2,8 @@ Tareas:
 Mostrar el usuario en el Log (facil)
 Mensajes en el resto(fácil)
 Validar los formularios (no introducir caracteres extraños, campos vacíos) (facil)
-Maquetación responsive (facil)
 
 
-Errores:
-Me logueo, edito mi usuario, no cambiar el usuario arriba
-Edito algo, muestra el mensaje de "se ha editado correctamente" pero en la pantalla se queda lo antiguo
-En consulta de usuario faltan los roles
-Falla la imagen si la intentas editar
-Falla la imagen si intentas editar el articulo (cualquier campo)
 
 Si un usuario está en situación “Inactivo”: Sus roles no aplican, se le permite el acceso al
 sitio, pero con permisos de usuario registrado. Sólo podrá efectuar el loguin y el logout. No

@@ -1,17 +1,14 @@
 <?php
 include '../../header.php';
+include '../../lib/validaciones.php'; //1. Añadir este archivo a nuevo y edicion
 
 if(!$isAdmin){
- header('Location: ../../index.php');
- } 
+	header('Location: ../../index.php');
+} 
 
 
 if (isset($_GET['nuevo']) && ($_GET['nuevo'] == "true")){
-	echo '<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
-			Se ha creado con exito</div>';
+		showSuccess("Usuario creado con éxito");
 }
 
 
@@ -32,56 +29,92 @@ if(!$resultado) {
 	$usuSit = $fila['usuSit'];
 
 if(isset($_POST['guardar'])) {	
-	$usuNomGuardado = $_POST['usuNom'];
-	$usuAliasGuardado = $_POST['usuAlias'];
-	$usuPwGuardado = $_POST['usuPw'];
-	$usuSitGuardado = $_POST['usuSit'];
 	
+	//Validaciones
+	$todoOk = true;
 	
-	$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado', usuSit = '$usuSitGuardado' WHERE usuID = '$id'";
-	
-	/********************************************************/
-	/* Opción de mensaje de error */
-	if (!mysqli_query($con,$sqlUpdate)){
-		echo '<div class="alert alert-error">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
-			Error guardando: '.mysqli_error($con).'</div>';
-		die();
+	$valUsuAlias = '';
+	if (!isset($_POST['usuAlias']) || !(validarAlias($_POST['usuAlias']))){ //2.1 Coge la funcion del archivo validaciones.php
+		//alias no le gusta
+		$valUsuAlias = 'Alias no valido. Mínimo 3 caracteres y máximo 15';
+		showError($valUsuAlias);
+		$todoOk = false;
 	}
-	/********************************************************/
 	
-	//Guardamos los roles
-	//1. Borramos las relaciones antiguas
-	mysqli_query($con, "DELETE FROM usuario_rol WHERE usuID=$id") or
-		die('Error: '. mysqli_error($con));
-	
-	//2. Insertamos las relaciones nuevas
-	if(!empty($_POST['roles'])) {
-		foreach($_POST['roles'] as $rolID) {
-			mysqli_query($con, "INSERT INTO usuario_rol (usuID, rolID) VALUES ($id, $rolID)") or
-				die('Error: '. mysqli_error($con));
+		$valUsuPw = '';
+		if (!isset($_POST['usuPw']) || !(validarContrasenha($_POST['usuPw']))){ //2.1 Coge la funcion del archivo validaciones.php
+			//pasword no le gusta
+			$valUsuPw = 'Password no valido. Mínimo 6 caracteres y máximo 10. Debe contener un caracter especial, un número y una letra';
+		showError($valUsuPw);
+			$todoOk = false;
 		}
-	}
-	
-	/******* log del sistema ***/
-	
-	$accion = 'Editar usuario';
-	$observaciones = 'Editó el usuario: '. $usuNomGuardado .' el administrador: ' . $_SESSION["usuNom"];
-	$fechaActual = date('Y-m-d H:i:s');
-	
-	if (isset($usuarioID)){
-		$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
-	}else{
-		$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', NULL, '$accion','$observaciones')";
-	}
-	mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
-	
-	/****************************/
-	showSuccess("Se ha editado con éxito");
-	
-	//header('location: consulta.php?op=edit&res=true');
+		//	**********
+		
+		//3. Si todo está ok, guardamos/actualziamos
+		if ($todoOk){
+					//Guardamos
+			
+			$usuNomGuardado = mysql_real_escape_string($_POST['usuNom']);
+			$usuAliasGuardado = mysql_real_escape_string($_POST['usuAlias']);
+			$usuPwGuardado = mysql_real_escape_string($_POST['usuPw']);
+			$usuSitGuardado = mysql_real_escape_string($_POST['usuSit']);
+			
+			
+			$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado', usuSit = '$usuSitGuardado' WHERE usuID = '$id'";
+			
+			/********************************************************/
+			/* Opción de mensaje de error */
+			if (!mysqli_query($con,$sqlUpdate)){
+				echo '<div class="alert alert-error">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		  <span aria-hidden="true">&times;</span>
+		</button>
+					Error guardando: '.mysqli_error($con).'</div>';
+				die();
+			}
+			/********************************************************/
+			
+			//Guardamos los roles
+			//1. Borramos las relaciones antiguas
+			mysqli_query($con, "DELETE FROM usuario_rol WHERE usuID=$id") or
+				die('Error: '. mysqli_error($con));
+			
+			//2. Insertamos las relaciones nuevas
+			if(!empty($_POST['roles'])) {
+				foreach($_POST['roles'] as $rolID) {
+					mysqli_query($con, "INSERT INTO usuario_rol (usuID, rolID) VALUES ($id, $rolID)") or
+						die('Error: '. mysqli_error($con));
+				}
+			}
+				
+			
+			/******* log del sistema ***/
+			
+			$accion = 'Editar usuario';
+			$observaciones = 'Editó el usuario: '. $usuNomGuardado .' el administrador: ' . $_SESSION["usuNom"];
+			$fechaActual = date('Y-m-d H:i:s');
+			
+			if (isset($usuarioID)){
+				$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
+			}else{
+				$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', NULL, '$accion','$observaciones')";
+			}
+			mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
+			
+			/****************************/
+			showSuccess("Se ha editado con éxito");
+			
+			//Recargamos el usurio
+			$sql = "SELECT * FROM usuario WHERE usuID  = '$id'";			
+			$resultado = mysqli_query($con,$sql);			
+			$fila = mysqli_fetch_assoc($resultado);
+			
+			$usuNom = $fila['usuNom'];
+			$usuAlias = $fila['usuAlias'];
+			$usuPw = $fila['usuPw'];
+			$usuSit = $fila['usuSit'];
+		}
+	//HAsta aqui 
 }
 
 ?>
@@ -93,15 +126,15 @@ if(isset($_POST['guardar'])) {
       <form method="post">
   <div class="form-group">
     <label for="usuNom">Nombre</label>
-    <input type="text" class="form-control" name="usuNom" id="usuNom" value="<?php echo $usuNom ?>">
+    <input type="text" class="form-control" maxlength="50" name="usuNom" id="usuNom" value="<?php echo $usuNom ?>">
   </div>
   <div class="form-group">
     <label for="usuAlias">Alias</label>
-    <input type="text" class="form-control" name="usuAlias" id="usuAlias" value="<?php echo $usuAlias ?>">
+    <input type="text" class="form-control" maxlength="15" name="usuAlias" id="usuAlias" readonly value="<?php echo $usuAlias ?>">
   </div>
   <div class="form-group">
     <label for="usuPw">Contraseña</label>
-    <input type="password" class="form-control" name="usuPw" id="usuPw" value="<?php echo $usuPw ?>">
+    <input type="password" class="form-control" maxlength="10" name="usuPw" id="usuPw" value="<?php echo $usuPw ?>">
   </div>
   <div class="form-group">
     <label for="usuSit">Situación</label>

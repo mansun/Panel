@@ -6,74 +6,99 @@ if(!$isAdmin && !$isEscritor){
 }
 
 if(isset($_POST['guardar'])) {	
-	
 
-	
-	/******************/
-	$uniqueId = GUID();
-	$target_dir = "img/";
-	$target_file = $target_dir . basename($uniqueId.'-'.$_FILES["artImx"]["name"]);
-	$uploadOk = 1;
-	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-	// Check if image file is a actual image or fake image
-		$check = getimagesize($_FILES["artImx"]["tmp_name"]);
-		if($check !== false) {
-			echo "File is an image - " . $check["mime"] . ".";
+	$todoOk = true;
+	if (!isset($_POST['artDatCre']) || empty($_POST['artDatCre'])){
+		showError('Formato de fecha no valido: dd-mm-aa');
+		$todoOk = false;
+	}
+	if (!isset($_POST['artTit']) || empty($_POST['artTit'])){
+		showError('No has introducido el nombre del artículo');
+		$todoOk = false;
+	}
+	if (!isset($_POST['artTxt']) || empty($_POST['artTxt'])){
+		showError('No has introducido el texto del artículo');
+		$todoOk = false;
+	}
+
+	if ($todoOk){
+
+		$subeNuevaImagen = false;
+		$target_file = '';
+		if (isset($_FILES["artImx"]) && isset($_FILES["artImx"]["tmp_name"]) && !empty($_FILES["artImx"]["tmp_name"])){
+			//Si ha subido una nueva imagen, hacemos lo mismo que en nuevo
+		
+			$uniqueId = GUID();
+			$target_dir = "img/";
+			$target_file = $target_dir . basename($uniqueId.'-'.$_FILES["artImx"]["name"]);
 			$uploadOk = 1;
-		} else {
-			echo "File is not an image.";
-			$uploadOk = 0;
-		}
-	// Check if file already exists
-	if (file_exists($target_file)) {
-		echo "Sorry, file already exists.";
-		$uploadOk = 0;
-	}
-	// Check file size
-	if ($_FILES["artImx"]["size"] > 500000) {
-		echo "Sorry, your file is too large.";
-		$uploadOk = 0;
-	}
-	// Allow certain file formats
-	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-			&& $imageFileType != "gif" ) {
-				echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+			// Check if image file is a actual image or fake image
+			$check = getimagesize($_FILES["artImx"]["tmp_name"]);
+			if($check !== false) {
+				echo "File is an image - " . $check["mime"] . ".";
+				$uploadOk = 1;
+			} else {
+				echo "File is not an image.";
 				$uploadOk = 0;
 			}
-			// Check if $uploadOk is set to 0 by an error
-			if ($uploadOk == 0) {
-				echo "Sorry, your file was not uploaded.";
-				// if everything is ok, try to upload file
-			} else {
-				if (move_uploaded_file($_FILES["artImx"]["tmp_name"], $target_file)) {
-					echo "The file ". basename( $_FILES["artImx"]["name"]). " has been uploaded.";
-				} else {
-					echo "Sorry, there was an error uploading your file.";
-				}
+			// Check if file already exists
+			if (file_exists($target_file)) {
+				echo "Sorry, file already exists.";
+				$uploadOk = 0;
 			}
-	/******************/
-	
-	$artDatCreGuardado = $_POST['artDatCre'];
-	$artTitGuardado = $_POST['artTit'];
-	$artTxtGuardado = $_POST['artTxt'];
-	$artImxGuardado = $target_file; //$_POST['artImx'];
-	$artLayoutGuardado = $_POST['artLayout'];
-	$artClasGuardado = $_POST['artClas'];
-	
-	$sqlUpdate = "INSERT INTO articulo (artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuID) VALUES ('$artDatCreGuardado', '$artTitGuardado', '$artTxtGuardado', '$artImxGuardado', '$artLayoutGuardado', '$artClasGuardado', $usuarioID)";
-	
-	mysqli_query($con,$sqlUpdate) or
-	die('Error: '. mysqli_error($con));	
-	
-	/******* log del sistema ***/
-	$accion = 'Crear Artículo';
-	$observaciones = 'Creó el artículo: '.$artTitGuardado .' por usuario: '. $_SESSION["usuNom"];
-	$fechaActual = date('Y-m-d H:i:s');
-	$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
-	mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
-	/****************************/
+			// Check file size
+			if ($_FILES["artImx"]["size"] > 500000) {
+				echo "Sorry, your file is too large.";
+				$uploadOk = 0;
+			}
+			// Allow certain file formats
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+					&& $imageFileType != "gif" ) {
+						echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+						$uploadOk = 0;
+					}
+					// Check if $uploadOk is set to 0 by an error
+					if ($uploadOk == 0) {
+						echo "Sorry, your file was not uploaded.";
+						// if everything is ok, try to upload file
+					} else {
+						if (move_uploaded_file($_FILES["artImx"]["tmp_name"], $target_file)) {
+							echo "The file ". basename( $_FILES["artImx"]["name"]). " has been uploaded.";
+						} else {
+							echo "Sorry, there was an error uploading your file.";
+						}
+					}
+					$subeNuevaImagen = true;
+		}
+		/******************/
+		
+		$artDatCreGuardado = mysql_real_escape_string($_POST['artDatCre']);
+		$artTitGuardado = mysql_real_escape_string($_POST['artTit']);
+		$artTxtGuardado = mysql_real_escape_string($_POST['artTxt']);
+		$artImxGuardado = $target_file; //$_POST['artImx'];
+		$artLayoutGuardado = mysql_real_escape_string($_POST['artLayout']);
+		$artClasGuardado = mysql_real_escape_string($_POST['artClas']);
+		
+		$sqlInsert = "INSERT INTO articulo (artDatCre, artTit, artTxt, artImx, artLayout, artClas, usuID) VALUES ('$artDatCreGuardado', '$artTitGuardado', '$artTxtGuardado', '$artImxGuardado', '$artLayoutGuardado', '$artClasGuardado', $usuarioID)";
+		
+		mysqli_query($con,$sqlInsert) or
+		die('Error: '. mysqli_error($con));
 
-	//header('location: ../../index.php');
+		//Obtenemos Id de articulo recien creado
+		$id = $con->insert_id;
+		//---------------------------------------+
+		/******* log del sistema ***/
+		$accion = 'Crear Artículo';
+		$observaciones = 'Creó el artículo: '.$artTitGuardado .' por usuario: '. $_SESSION["usuNom"];
+		$fechaActual = date('Y-m-d H:i:s');
+		$sqlLog = "INSERT INTO log (logDatEve, UsuId, logAction, logObserv) VALUES ('$fechaActual', $usuarioID, '$accion','$observaciones')";
+		mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
+		/****************************/
+		
+		header("location: edicion.php?id=$id&nuevo=true");
+		
+	}
 }
 
 ?>
@@ -90,7 +115,7 @@ if(isset($_POST['guardar'])) {
   <div class="clearfix"></div>
   <div class="form-group">
     <label for="artTit">Título</label>
-    <input type="text" class="form-control" name="artTit" id="artTit" value="">
+    <input type="text" class="form-control" maxlength="200" name="artTit" id="artTit" value="">
   </div>
   <div class="form-group">
     <label for="artTxt">Texto</label>

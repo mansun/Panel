@@ -17,12 +17,12 @@ if(!$resultado) {
 	$usuPw = $fila['usuPw'];
 
 if(isset($_POST['guardar'])) {	
-	$usuNomGuardado = $_POST['usuNom'];
-	$usuAliasGuardado = $_POST['usuAlias'];
-	$usuPwGuardado = $_POST['usuPw'];
+	$usuNomGuardado = mysql_real_escape_string($_POST['usuNom']);
+	$usuAliasGuardado = mysql_real_escape_string($_POST['usuAlias']);
+	$usuPwGuardado = mysql_real_escape_string($_POST['usuPw']);
 	
 	
-	$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado', usuSit = '$usuSitGuardado' WHERE usuID = '$id'";
+	$sqlUpdate = "UPDATE usuario SET usuNom = '$usuNomGuardado', usuAlias ='$usuAliasGuardado', usuPw ='$usuPwGuardado' WHERE usuID = '$id'";
 	
 	mysqli_query($con,$sqlUpdate) or
 		die('Error: '. mysqli_error($con));	
@@ -57,7 +57,7 @@ if(isset($_POST['guardar'])) {
   </div>
   <div class="form-group">
     <label for="usuAlias">Alias</label>
-    <input type="text" class="form-control" name="usuAlias" id="usuAlias" value="<?php echo $usuAlias ?>">
+    <input type="text" class="form-control" name="usuAlias" id="usuAlias" readonly value ="<?php echo $usuAlias ?>">
   </div>
   <div class="form-group">
     <label for="usuPw">Contraseña</label>

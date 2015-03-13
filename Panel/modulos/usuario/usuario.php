@@ -44,13 +44,25 @@ while($fila = mysqli_fetch_array($resultado)){
 		break;
 	}
 
+	//Por cada usuario, consultamos sus roles
+	$sqlRoles = "SELECT rol.* FROM usuario_rol inner join rol on usuario_rol.rolID = rol.rolID WHERE usuario_rol.usuID='$usuID'";
+	$resultadoRolesDeUsuario = mysqli_query($con,$sqlRoles);
+	
+	$rolesAMostrar ="";
+	while($fila = mysqli_fetch_array($resultadoRolesDeUsuario)){
+		$rol_rolID = $fila['rolID'];
+		$rol_rolNom = $fila['rolNom'];
+		
+		$rolesAMostrar .= $rol_rolNom."<br />";
+	}
+	//---------------------------------------
 	
 	echo "<tr>
 			<td>$usuNom</td>
 			<td>$usuAlias</td>
 			<td>$usuSit</td>
 	
-			<td>Mostrar los roles aquí</td>
+			<td>$rolesAMostrar</td>
 		</tr>";
 }
 echo "			</tbody>

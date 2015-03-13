@@ -96,12 +96,12 @@ if (isset($_GET['textoBusqueda'])){
 	  </section>
 		 
 		<section class="diamante">
-		  <div class="container">
-		  	<div class="row">
-		  		<div class="foto col-md-1">
-		  			<img width="100" height="100" class="redondel" src="/panel/img/quique.jpg">
-		  		</div>
-					<div class="bienvenida col-md-5">
+		 	<div class="container">
+		  		<div class="row">
+			  		<div class="foto col-xs-2 col-md-1">
+			  			<img width="100" height="100" class="redondel" src="/panel/img/quique.jpg">
+			  		</div>
+					<div class="bienvenida col-xs-10 col-md-11">
 						<h1>Fernando Wirtz</h1>
 						<h4 class="bienvenida">Panel de artículos DAWB de Enrique Prado</h4>
 						<ul class="list-inline">
@@ -110,7 +110,7 @@ if (isset($_GET['textoBusqueda'])){
 							<li><i class="fa fa-twitter-square"></i></li>
 							<li><i class="fa fa-tumblr-square"></i></li>
 						</ul>
-						</div>
+					</div>
 				</div>
 			</div>
 		</section>
