@@ -1,7 +1,6 @@
 <?php
 include 'header.php';
 
-
 if(isset($_POST['enviar'])) {
 	$usuAlias = $_POST['usuAlias'];
 	$usuPw = $_POST['usuPw'];
@@ -66,7 +65,7 @@ if (!$isAnonimo){
       <div class='page-header'>
         <h3>Login</h3>
       </div>
-      <form class="formulario-login" method="post">
+      <form class="formulario-login" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
   <div class="form-group">
     <label for="usuAlias">Alias</label>
     <input type="text" class="form-control" name="usuAlias" id="usuAlias" value="">
@@ -77,6 +76,7 @@ if (!$isAnonimo){
   </div>
   <button type="submit" name="enviar" value="enviar" class="btn btn-default">Enviar</button>
   </form>
+  
 
      </div>
 <?php

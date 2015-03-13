@@ -3,7 +3,6 @@ Mostrar el usuario en el Log (facil)
 Mensajes en el resto(fácil)
 Validar los formularios (no introducir caracteres extraños, campos vacíos) (facil)
 Maquetación responsive (facil)
-Maquetar bien vista ampliada y fotos (facil)
 
 
 Errores:

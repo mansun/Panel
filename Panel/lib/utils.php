@@ -11,10 +11,28 @@ function GUID()
 
 function showError($msg)
 {
-	echo '<div class="alert alert-danger">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>'.$msg.'</div>';
+	echo '<section class="mensajes">
+    		<div class="container">
+				<div class="alert alert-danger">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  						<span aria-hidden="true">&times;</span>
+					</button>'.$msg.'</div>
+							</div>
+			</div>';
 }
+
+function showSuccess($mensaje)
+{
+	echo '
+			<section class="mensajes">
+    		<div class="container">
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  						<span aria-hidden="true">&times;</span>
+					</button>'.$mensaje.'</div>
+				</div>
+			</div>';
+}
+
 
 ?>

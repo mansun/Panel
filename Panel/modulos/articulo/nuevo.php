@@ -83,10 +83,11 @@ if(isset($_POST['guardar'])) {
         <h3>Nuevo artículo</h3>
       </div>
       <form method="post" enctype="multipart/form-data">
-  <div class="form-group">
+  <div class="form-group col-xs-2">
     <label for="artDatCre">Fecha</label>
     <input type="date" class="form-control" name="artDatCre" id="artDatCre" value="">
   </div>
+  <div class="clearfix"></div>
   <div class="form-group">
     <label for="artTit">Título</label>
     <input type="text" class="form-control" name="artTit" id="artTit" value="">

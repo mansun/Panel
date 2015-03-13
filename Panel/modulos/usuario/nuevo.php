@@ -49,6 +49,8 @@ if(isset($_POST['guardar'])) {
 	
 	/****************************/
 	
+	showSuccess("Usuario creado con éxito");
+	
 	header("location: edicion.php?id=$id&nuevo=true");
 }
 

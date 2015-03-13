@@ -1,10 +1,10 @@
 <?php
 include '../../header.php';
 
-/* if(!$isAdmin){
+if(!$isAdmin){
  header('Location: ../../index.php');
  } 
- */
+
 
 if (isset($_GET['nuevo']) && ($_GET['nuevo'] == "true")){
 	echo '<div class="alert alert-success">
@@ -79,11 +79,7 @@ if(isset($_POST['guardar'])) {
 	mysqli_query($con,$sqlLog) or die('Error en el log: '. mysqli_error($con));
 	
 	/****************************/
-	echo '<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  <span aria-hidden="true">&times;</span>
-</button>
-			Se ha editado con exito</div>';
+	showSuccess("Se ha editado con éxito");
 	
 	//header('location: consulta.php?op=edit&res=true');
 }

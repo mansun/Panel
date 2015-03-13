@@ -222,6 +222,15 @@ section.contenido {
     background-size: cover;  
 }
 
+.col-xs-2 {
+	padding-left: 0px;
+}
+
+.alert {
+	margin-bottom: 0px;
+	margin-top: 45px;
+}
+
 
 
 
