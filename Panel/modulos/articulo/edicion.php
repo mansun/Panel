@@ -98,7 +98,7 @@ if(isset($_POST['guardar'])) {
 					// if everything is ok, try to upload file
 				} else {
 					if (move_uploaded_file($_FILES["artImx"]["tmp_name"], $target_file)) {
-						echo "The file ". basename( $_FILES["artImx"]["name"]). " has been uploaded.";
+						
 					} else {
 						echo "Sorry, there was an error uploading your file.";
 					}
